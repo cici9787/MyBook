@@ -1,0 +1,51 @@
+1.Problem Navigition
+问问题, 3-5个问题, 澄清是什么场景什么功能
+what's the UI look like?
+what the main features?
+what the scale?
+what are the metrics I want to improve?
+
+2.Over all idea
+draw the architecture, a graph to demonstrate the architecture
+
+3.write down for each component?
+it should include:
+(1)Features
+    [1]User features: demographic, features, age, gender, location, L28,
+    UIH-user interactive history(DIN, SIM, HSTU)
+    [2]Social network: todo search for facebook social network feature
+    [3]Video feature: video length, content embedding(NLP, visual embedding CLIP/VIT)
+    [4]Engagement counts:
+        user counts: avg vv10s, avg like CTR, avg comment CTR.
+        video counts:
+
+    normalization: standardization (mean 0 std 1), min-max normalization [-1, 1]
+    sparse: IDs -> hash -> embedding table, 经常问的how to prevent hash collision
+
+(2)Data
+    Data log join
+        Feature: backend -> Hive
+        Labels(user actions): Frontend -> Hive
+        Join: (feature, label) pairs
+    Recurrent training:
+        Daily training: aggregate data -> train model -> deploy online
+        Online learning: data join is streaming -> online training of model -> deploy model online
+
+
+(3)Metrics
+    Offline metric: AUC, NE
+    Online metric: time spent, impression(ads revenue)
+(4)Monitoring
+    Monitor infra metics(QPS, latency)
+    Monitor model accuracy metrics(online AUC)
+(5)Modeling
+    Monitor infra metrics(QPS, latency)
+    Monitor model accuracy metrics(online AUC)
+
+
+
+
+typical questions:
+1. hash table
+2. hash collasion
+3. embedding table

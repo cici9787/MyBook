@@ -1,0 +1,88 @@
+1.Ranking Model Optimization (July 2020 - December 2020)
+Introduction:
+The existing query recommendation model at RedNote was a simple linear formula based on statistical features.
+It lacked personalization, had poor generalization, and performed badly in cold - start and long - tail query scenarios.
+The project aimed to develop a new model to boost click - through rate (CTR) and search volumn.
+
+Your Role and Responsibilities:
+I worked on the multi - scene multi - task ranking models before.
+I designed the model feature system, developed the data flow, and was in charge of the structure,
+offline training, online deployment, and incremental update mechanism of
+the multi - scene multi - task ranking model.
+
+Challenges and Solutions:
+Creating a model adaptable to multiple scenarios and tasks was difficult.
+I overcame this by comprehensively considering various user and search - related features at the data level and
+setting multiple label targets.
+
+Results and Impact:
+The new model increased the search scale by 840,000 per day.
+The CTR of “You May Like” aka "null state" went up by +27.63%,
+“Search Filter” by +11.85%, and “Related Search” by +12.32%.
+
+Lesson Learned:
+I gained a deep understanding of how vital data - driven decision - making is in model building.
+Every step of creating the model, from feature selection to parameter tuning, should be guided by data analysis.
+Additionally, I recognized the complexity of balancing multiple objectives in algorithm design.
+
+2.Optimization of User experience (June 2024 - Present)
+Your Role and Responsibilities:
+I'm involved in search satisfaction modeling,
+Include setting up satisfaction criteria, building models, and optimizing ranking strategies.
+
+Challenges and Solutions:
+Establishing a satisfaction criteria system.
+I worked with the team to define annotation standards,
+built a feature collection pipeline,
+and used data augmentation to train the initial LTR model.
+
+Results and Impact:
+In search satisfaction modeling, GSB accuracy increased by +3.08%,
+CTR of A5 content by +1.109%,
+overall CTR by +0.351%,
+and daily search penetration rate by +0.113%.
+
+I also do some ranking mechanism optimization, such as diversity.
+
+3.Community Search Retrieval Optimization (May 2023 - June 2024)
+Introduction:
+RedNote's search system has two main components, with community search handling about 400 million queries daily.
+
+Role and Responsibilities:
+I enhanced term importance and expansion in sparse retrieval, upgraded preliminary scoring,
+enriched and updated retrieval signals on the query and doc sides,
+on query side, included query term importance and synonyms,
+on doc side, I integrated multi-modal text extraction, doc search queries, and doc - generated queries.
+and collaborated with the engineering team on architecture transformation and offline evaluation tool establishment.
+
+Challenges and Solutions:
+For long-tailed queries it's not easy to find satisfaction results.
+To solve this, I upgraded the query reduction channel using a fusion model and optimized features.
+
+Results and Impact:
+There was an accumulated increase of +0.23pt in the proportion of clicked queries and
++0.26pt in the proportion of clicked long - tail queries.
+The new offline evaluation tools set a good foundation for evaluate further improvements.
+
+4. Ranking Mechanism Optimization - Diversity (May 2020 - Feb 2021)
+
+Introduction: The project aimed to solve issues such as similar note/brand/cover - image clustering in general search and similar query aggregation in query recommendation scenarios.
+Your Role and Responsibilities: I used the MMR algorithm in general search to improve result diversity and applied MMR with a sliding window in query recommendation, customizing strategies for different business scenarios.
+Challenges and Solutions: Adapting the MMR algorithm to different search and recommendation scenarios was a challenge. I customized the application of the algorithm based on the characteristics of each scenario.
+Results and Impact: In general search, the bad case of diversity decreased from 8.2% to 3.7%, and user engagement metrics improved. In query recommendation, the proportion of diversity bad cases dropped from 9.1% to 3.6%, and the number of daily queries increased by 49,000.
+Lesson Learned: I learned how to use algorithms to improve search and recommendation diversity, and the importance of tailoring solutions to specific business scenarios.
+
+And I were in charge of related search, an entire pipeline from query processing, retrieval, ranking, to post Rank.
+5.Query Recommendation - Related Search (Jan 2022 - Dec 2022)
+Introduction: The “Related Search” feature on the search result page helps users explore more content related to their current search query. The project aimed to enhance this feature for better user exploration.
+Your Role and Responsibilities: I added multiple recall channels (statistical recall, query rewriting recall, ANN vector recall), optimized real - time performance, relevance, and engineering performance.
+Challenges and Solutions: Improving the recall and real - time performance for related search was difficult. I added different recall channels to cover more queries and optimized the system's engineering performance.
+Results and Impact: There were significant increases in passive search, clicks, and impressions in “Popular Searches” and “Related Searches”. The average timeout rate decreased from 2% to 0.3%, and the average response time dropped from 109ms to 69ms.
+Lesson Learned: I learned about different recall techniques and the importance of optimizing engineering performance to improve the user experience in real - time search - related features.
+
+Query Recommendation (Mar 2022 - Apr 2023)
+Introduction: This project focused on two aspects: launching a new “Related Searches On Note Detail Pages” feature and optimizing the “Search Filters” to meet users' in - depth search needs and increase the query scale.
+Your Role and Responsibilities: For “Related Searches On Note Detail Pages”, I added a note content extraction recall channel, optimized the ranking module, and managed low - quality words. For “Search Filters”, I optimized retrieval and user experience.
+Challenges and Solutions: Improving the coverage and quality of new features was a challenge. I added recall channels, optimized ranking, and used various signals to manage word quality.
+Results and Impact: Search PV increased from 5 million to 17.4 million, and the passive search rate rose from 4% to 11%. The bad cases rate decreased for both features.
+Lesson Learned: I learned how to develop and optimize new search - related features, and the importance of using user - feedback signals for continuous improvement.

@@ -1,0 +1,15 @@
+Q: How to search image by a textual query?
+(1) Traditional Keyword-based Search
+    Firstly, build indexing.
+    Image metadata, file names, tags, descriptions, captions. Or External Descriptions
+    User these info to build index in a searchable database, like elasticSearch.
+    Secondly, Using query processing to process the input query.
+(2) Content-based Image Retrieval
+    (a) extract feature from picture, like: color features, texture features, shape features(YOLO, Faster R-CNN).
+    (b) extract feature from text.All same those features.Text to feature mapping, translate
+    textual query into visual features.
+    (c) similarity calculation.
+(3) Using NLP and Vision Models
+    (a) CLIP, CLIP encodes the text into a feature vector. It also encodes all the images
+    int the database into feature vectors.And calculates the similarity between the text
+    feature and the image feature.Retrieve the most relevant.

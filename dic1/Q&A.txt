@@ -1,0 +1,26 @@
+Q:1.how do improve scalability?
+A:
+1.Moularize
+split the system into small,independent modules
+2.Microservices
+break the system into tiny services that work seperately
+3.Loose coupling(低耦合)
+different parts of system don't depend too much on each other.
+
+Technology
+1.Scalable Database: HBase
+2.Cloud Platform: AWS, Alibaba Cloud, Tencent Cloud
+3.Caching: Redis
+redis stores data that's used often, so the system can fetch data faster and doesn't have to the database every time.
+
+Data partitioning: divide data into smaller parts and store them in different places.
+Monitor and Alarm: monitor the system and set up alarms to notify you when something goes wrong.
+
+天花板预估：
+召回增量+排序增量
+拉空率*点击率
+（业界排序CTR-当前排序CTR）* 曝光量
+
+Transformer:
+communication: multi-head self-attention
+computation: feed-forward network

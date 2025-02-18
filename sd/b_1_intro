@@ -1,0 +1,44 @@
+system design: https://systemdesignschool.io/primer#introduction
+
+put all moving parts together
+1.databases
+2.APIs
+3.caching layers
+4.load balancers
+5.distributed queues
+
+scalability
+fault tolerance
+
+API Gateway
+Laying the Groundwork
+
+how to you handle large number of submitting solutions at the same time?
+1.Message Queue:
+use a message queue, this allows us to buffer submissions during peak times
+and process them as resources become available.
+2.Scaling
+scaling down during less active times and scaling up during peak times
+
+how to store document?
+document meta data
+    small, structured
+    store: relational database
+document content data
+    larger, less structured
+    store: aws s3, google cloud
+
+websocket: 实时通信
+
+high qps:
+    partition
+    aggregation
+instance 实例
+
+How to Build Index?
+1.build index offline, using a batch processing system like Hadoop or Spark.
+2.The index would be stored in a distributed file system like HDFS or S3.
+3.loaded into Elastic search cluster.
+
+SS table: sorted string table
+LSM-Tree: LogStructured Merge-Tree

@@ -1,0 +1,11 @@
+huggingface-cli download \
+    --repo-type dataset \
+    --local-dir /root/autodl-tmp/datasets/Chinese-DeepSeek-R1-Distill-data-110k-SFT \
+    Congliu/Chinese-DeepSeek-R1-Distill-data-110k-SFT
+
+huggingface-cli download \
+    deepseek-ai/DeepSeek-R1-Distill-Qwen-7B \
+    --local-dir /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B \
+    --local-dir-use-symlinks False  # 禁用缓存，直接下载到目标目录
+
+mv /root/autodl-tmp/datasets/Chinese-DeepSeek-R1-Distill-data-110k-SFT/* /root/autodl-tmp/datasets/

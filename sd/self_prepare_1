@@ -1,0 +1,202 @@
+1.please help me introduce my self?
+
+self-introduction
+I’m Cecilia Chen, a Senior Search Machine Learning Engineer with over five years of experience
+building search systems for big platforms. In my current role at Zhihu, also known as China's Quora.
+I came here since June 2024.I lead projects to improve search experience,
+I've established a user experience evaluation framework and implemented a learning-to-rank (LTR) pipeline
+to enhance search satisfaction.We want to bring the most relevant, high quality,
+freshness and authority content to our user.
+I also in charge of last stage ranking on verticals and had completed the user name ranking module.
+
+Prior to this, I dedicated four years and 2 month at red Notes, also known as xiaohongshu.
+There, I worked on improving search engine's core tech.
+I worked in the retrieval team to optimize lexical/text retrieval.I optimized various retrieval generators and
+built a offline retrieval evaluation system.I were able to improve regular and long-tailed query clicked through rate.
+I also played a key role in improving search volumn,
+through a series ranking and retrieval optimizations I were able to increase passive search volumn from 4% to 11%,
+and increased over twelve million search pv.
+
+I hold a Master degree in Computer Science from Northeastern University,
+where I graduated in the top 5% of my class and won the various Scholarship and Outstanding graduates.
+These equipped me with a solid foundation in professional career later on.
+
+I'm particularly excited about the possibility of working for Meta.
+I look forward to the opportunity to bring my unique perspective and expertise to the table and drive impactful changes.
+
+2.If we hire you what role you gonna fit?
+I have worked on ranking, retrieval and entry-point optimization in the past.This given me a comprehensive
+pratical experience in search field.I would particularly like to work on ranking improvement.
+However I am flexible, if other relevant positions are open,I would like to fit in those areas as well.
+
+3.why do you want to change your working places? What are your thoughts on relocation?
+I'm willing to change working places because I'm seeking new opportunities for growth and want to be a part of an
+international company.I believe that embracing more international and diversity will benifit my long-term
+professional development.
+I want to broaden my horizons and increase my knowledge.
+Life is a journey, and what matters most are the experiences and adventures along the way.
+
+I am open-minded about relocation. I see it as an opportunity for personal and professional growth.
+I'm confident in my ability to adapt quickly. I believe that working in a new environment will help me
+expand my horizons and be a more flexible person.
+
+# I'm looking forward to exploring the new community, new relationships and integrating into local culture while
+focusing on my work at meta.
+
+4.What are your long-term goals?
+In the long-term, I envision myself being an expert at searching field.
+I plan to continuously expand my knowledge and collaborate with
+professionals to create solutions that improve how people interact with
+digital content and with each other.
+
+Another crucial aspect of my long - term goals is that
+I've always been passionate about working for an international company.
+I believe embracing diversity will enhance my professional skills and also fuel my creativity.
+This is exactly why I'm so enthusiastic about the possibility of joining Meta.
+Its global presence and diverse workforce offer the perfect platform for me
+to grow and contribute on an international scale,
+while also making a real difference in the way people
+connect and communicate through technology.
+
+5.What are your interests in working with us?
+I am extremely enthusiastic about joining Meta.
+Meta has consistently pushed the boundaries in social media,
+virtual reality and augmented reality.It's always been in the
+frontier on shaping how we connect with each other.I want to participate
+and be a part of this journey too.It would be a great environment where \
+people come from all walks of life, sharing their ideas and working on
+some of amazing projects to make the world a better place.
+I've got some skills that I think would be a good fit to meta.
+
+
+6.what are your most challenging project? and how do you overcome it?
+
+One of the most challenging project I've worked on was optimizing
+entry point's ranking system.Which took place during my first
+half year of career.
+The main difficulty was that, with a shortage of manpower, I had to
+achieve ctr in a short period.The existing model was quite basic, a
+simple linear model with few statistical features.It suffered from a
+lack of personalization, and performed poorly on new scenes and
+long-tailed queries.
+So that give me a chance to build ranking module from scratch.As I
+embarked on this project, I developed a deep understanding on the
+background and evolution of ranking. I carefully planned its structure,
+offline training process, online deployment, and incremental update mechanisms.
+It was a complex task that involved a lot of trial and error.But I came through,
+When implemented in business scenarios like "null state", "Search Filters",
+and "Related Search", we saw significant improvements.
+The daily search volumn increased by 840,000 pv,
+and the CTR in these areas improved as well,
+with "null state" seeing a 27.63% increase,
+"Search Filters" 11.85%,
+and "Related Search" 12.32%.
+Additionally, I managed to reduce training and maintenance costs
+while enhancing the model's scalability for different business scenarios.
+This happened just in the beginning of my career.
+But it taught me the importance of perseverance, adaptability,
+and strategic thinking in the face of challenges.
+If you overcame with it you see growth.
+
+7.do you have any questions?
+(1)would you tell me more about the team I would be working with?
+how many teams are there in the department and what the job
+responsibilities of different team
+I want to have a clear picture of the organization's structure and
+how different team collaborate with each other.
+
+(2)what kind of professional development opportunities are available for employees?
+how many promotion opportunities are provided to employees in a year?
+And what is the proportion of that.
+I want to have a better understanding of the company's career development path and pace.
+
+(3)will my interview process be the same as the one described on
+the facebook website? Are there any precautions I should take?
+
+
+
+
+Appendix:
+1.background
+Equipped with a Master's Degree in Computer Science
+and had five years of practical experience in search algorithms.
+
+2.experience
+I have a computer
+science background and I have working in the social media industry for several years.
+
+Red Note is one of the most active lifestyle sharing platforms, which have two
+main parts, social media and e-commerce, and has gained popularity
+worldwide recently.I worked in the community department over 4 years and 2 month.
+Community is where people sharing their lifestyles and communicate with each other.
+Users can find various contents in this app and like or comment on posts.And
+different users can follow each other and send messages to communicate with
+each other.
+
+Zhihu is one of the most active knowledge-sharing platforms in China.
+And is more focused on quality content.
+This platform has attracted a large number of outstanding creators in
+various professional fields, such as Andrew Ng and Kai - Fu Lee.
+It has produced the highest - quality and most influential articles
+on the Chinese Internet.
+Young people can obtain valuable information here, make new friends,
+discuss and share issues regarding their lives and work.
+
+
+meta's mission:
+Giving people the power to build community and bring the world closer together.
+
+meta's vision:
+To bring the metaverse to life and help people connect,
+find communities and grow businesses.
+
+soft skills:
+1.Communication
+2.Teamwork and Collaboration
+3.Industrial problem-solving Skills
+4.Time Management and Organization
+5.Continuous Learning
+    I am always staying updated and willing to adapt to changes.
+        Keeping up with the latest papers, industry trends and new technologies in the field.
+        Quickly learning and adapting to new tools, framework, technologies and environment.
+
+hard skills:
+1.Machine Learning Algorithms
+    Supervised Learning
+        Classification: Binary classification, Multi-class classification
+        Regression
+    Unsupervied Learning
+        Clustering
+        Association
+        Dimension reduction
+    Reinforcement Learning
+2.Machine Learning Frameworks
+    Pytorch
+    Tensorflow
+    Keras
+3.Data Processing and Analysis
+    Data Cleaning and Data Preprocessing
+    Data visualization
+    SQL and NoSQL Databases
+4.Big Data Techonologies:
+    Using Hadoop, Spark and Kafka for processing and managing large-scale datasets.
+
+
+文本召回: lexical retrieval
+向量召回：semantic retrieval
+混合检索：hybrid retrieval
+
+famous tourist place in singapore:
+1.Marina Bay Sands
+2.Sentosa Island
+    Universal Studio
+3.Merlion Park
+4.Gardens by the Bay
+
+ name
+ school
+ job and responsibilities
+
+
+one of my senior female classmates went to the National University of Singapore for an exchange program
+during the last two years of her doctoral studies.

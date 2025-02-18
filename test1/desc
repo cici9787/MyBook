@@ -1,0 +1,46 @@
+1. download
+huggingface:
+export HF_ENDPOINT=https://hf-mirror.com
+huggingface-cli download THUDM/glm-4-9b-chat --local-dir /root/autodl-tmp/models/glm-4-9b-chat
+
+modelscope:
+pip install modelscope
+modelscope download --model ZhipuAI/glm-4-9b-chat --local_dir /root/autodl-tmp/models/glm-4-9b-chat
+# int4 量化模型
+modelscope download --model qwen/Qwen2-1.5B --local_dir /root/autodl-tmp/models/qwen2-1.5b
+
+vllm:
+sh run_vllm_server.sh
+sh run_gradio_client.sh
+
+如果你只有 1 个 GPU，直接把 --tensor-parallel-size 设为 1 就行：
+#!/bin/bash
+python -m vllm.entrypoints.openai.api_server \
+    --model /root/autodl-tmp/models/qwen2-1.5b \
+    --tensor-parallel-size 1 \    # 修改为1个GPU
+    --trust-remote-code \
+    --api-key token-abc123
+
+修改 ollama 模型下载地址
+export OLLAMA_MODELS="/root/autodl-tmp/llama_models"  # 设置新路径
+echo 'export OLLAMA_MODELS="root/autodl-tmp/llama_models"' >> ~/.bashrc
+source ~/.bashrc
+
+构建ollama model
+ollama create qwen2-7b-instruct-q5_k_m -f /root/autodl-tmp/cgft-llm/graph-rag/src/Modelfile
+
+ollama run qwen2-7b-instruct-q5_k_m
+
+mv /root/autodl-tmp/cgft-llm/graph-rag/src/openai_embeddings_llm.py /root/miniconda3/lib/python3.10/site-packages/fnllm/openai/llm/openai_embeddings_llm.py
+mv /root/autodl-tmp/cgft-llm/graph-rag/src/embeddings.py /root/miniconda3/lib/python3.10/site-packages/fnllm/openai/llm/embeddings.py
+
+帮我发送一封邮件
+发件人: 1321210819@qq.com, 收件人：ql_transcend@126.com, 发送内容写着一封来自未来胖虎的问候邮件，主题随便
+发件人: ql_transcend@126.com, 收件人：ql_transcend@126.com, 发送内容你做的饭真好吃，真香，真上头 呜呜呜，主题随便
+
+ql_transcend@126.com
+Splendid01
+授权码：JBUSNZ8AS5pVSXnh
+
+
+//
