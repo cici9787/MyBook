@@ -63,4 +63,19 @@ sparse feature -> dense embedding representation via trainable embedding lookup 
 有监督微调：supervised fine-tuning
 标注：annotation
 
+先序遍历 preorder traversal
+中序遍历 inorder traversal
+后序遍历 postorder traversal
+层次遍历 level order traversal
+单调栈 monotonic stack
+
+推词: entry point
+猜你想搜: null state
+相关搜索: related search
+视频推词: pivot
+sugg: type ahead
+
+召回: retrieval
+词权重: term importance
+
 

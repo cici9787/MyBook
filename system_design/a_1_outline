@@ -1,0 +1,168 @@
+[1]Steps of System Design:
+1.Clarifying requirements
+2.Framing the problem as an ML task
+3.Data preparation
+4.Model development
+5.Evaluation
+6.Deployment and serving
+7.Monitoring and infrastructure
+
+[2]Clarifying Requirements:
+1.Business objectives
+2.Features the system needs to support
+3.Data
+4.Constraints
+5.Scale of the system
+6.Performance
+
+example:
+1.
+Application:
+Event ticket selling app
+
+Business objective:
+Increase ticket sales
+
+ML objective:
+Maximize the number of event registrations
+
+2.Video streaming app
+Increase user engagement
+Maximize the time users spend watching videos
+
+3.Ad click prediction system
+Increase user clicks
+Maximize click-through rate
+
+4.Harmful content detection in a social media platform
+Improve the platform's safety
+Accurately predicted if a given content is harmful
+
+5.Friend recommendation system
+Increase the rate at which users grow their network
+Maximize the number of formed connections
+
+[3]Choosing the right ML category:
+
+1.Supervised learning
+    a.Classification
+        Binary classification
+        Multi-class classification
+    b.Regression
+2.Unsupervised learning
+    a.Clustering
+    b.Association
+    c.Dimension reduction
+3.Reinforcement learning
+
+[4]Data storage:
+1.SQL
+    MYSQL, PostgreSQL
+
+2.NoSQL
+    a.Key-value store
+        Redis, DynamoDB
+    b.Column-based store
+        Cassandra, HBase
+    c.Graph-based store
+        Neo4j, Amazon Neptune
+    d.Document-based store
+        MongoDB, CouchDB
+
+[5]Data types
+(1)Structured
+    a.Numerical
+        Discrete
+        Continuous
+    b.Categorical
+        Ordinal
+        Nominal
+(2)Unstructured
+    Audio
+    Video
+    Image
+    Text
+
+Feature engineering:
+1.Handling missing values
+2.Deletion
+3.Imputation: Mean, Median, Mode
+4.Feature scaling
+    Normalization
+    Standardization(Z-score normalization)
+    Log scaling
+    Discretization(Bucketing):
+        focus on learning only a few categories instead of attempting to learn an infinite number of possibilities.
+5. Encoding categorical features
+    One-hot encoding
+        exp:
+            gender: male, female
+            male [1, 0], female [0, 1]
+    Label encoding
+        exp:
+            size: small, medium, large
+            small 0, medium 1, large 2
+    Target encoding
+        exp:
+    Frequency encoding
+        exp:
+            fruit: "apple", "banana", "apple", "cherry", "apple"
+            apple 3, banana 1, cherry 1
+    Binary encoding
+        exp:
+            animal: after label encoding: dog = 0, cat = 1, bird = 2, fish = 3
+            in binary: 0 = 00, 1 = 01, 2 = 10, 3 = 11
+    Mean encoding
+        exp: it replaces each category with the mean of the target variable for that category.
+        CLASS    SCORE
+        A        80
+        B        70
+        A        90
+        B        60
+        res: A = (80 + 90) / 2 = 85, B = (70 + 60) / 2 = 65
+
+    Weight of evidence encoding
+    Probability ratio encoding
+    Hash encoding
+    Feature hashing
+    Embedding
+
+[6]Model Devolopment
+Model selection
+1. Establish a simple baseline
+2. Experiment with simple models
+3. Switch to more complex models
+4. Use ensemble of models if we want accurate predictions
+
+Model types:
+    Logistic regression
+    Linear regression
+    Decision trees
+    Random forests
+    support vector machines
+    Naive Bayes
+    Factorization Machines
+    Neural networks
+
+appendix:
+linear regression and logistic regression difference:
+https://blog.csdn.net/qq_41386326/article/details/126341145
+
+Model training
+    Constructing the dataset
+    Choosing the loss function
+    Training from scratch vs fine-tuning
+    Distributed training
+
+Constructing the dataset
+    Collect raw data
+    Identify features and labels
+    Select a sampling strategy
+    Split the data
+    Address class imbalance
+
+
+
+
+
+
