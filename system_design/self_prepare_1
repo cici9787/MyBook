@@ -92,5 +92,35 @@ meta's vision:
 To bring the metaverse to life and help people connect,
 find communities and grow businesses.
 
-soft skills
+soft skills:
+1.Communication
+2.Teamwork and Collaboration
+3.Problem-Solving Skills
+4.Time Management and Organization
+5.Continuous Learning
+    I am always staying updated and willing to adapt to changes.
+        Keeping up with the latest papers, industry trends and new technologies in the field.
+        Quickly learning and adapting to new tools, framework, technologies and environment.
+
+hard skills:
+
+1.Machine Learning Algorithms
+    Supervised Learning
+        Classification: Binary classification, Multi-class classification
+        Regression
+    Unsupervied Learning
+        Clustering
+        Association
+        Dimension reduction
+    Reinforcement Learning
+2.Machine Learning Frameworks
+    Pytorch
+    Tensorflow
+    Keras
+3.Data Processing and Analysis
+    Data Cleaning and Data Preprocessing
+    Data visualization
+    SQL and NoSQL Databases
+4.Big Data Techonologies:
+    Using Haddop, Spark and Kafka for processing and managing large-scale datasets.
 
