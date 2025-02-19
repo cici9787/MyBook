@@ -1,0 +1,83 @@
+相关搜索：related search
+首页搜索框：homepage search box
+自动补全：typeahead
+猜你想搜：null state
+底纹词：shaded words
+热榜：hot list
+筛选项：search page filters
+
+编辑距离：edit distance/Levenshtein distance
+
+排序算法：sorting algorithm
+快速排序：quick sort
+冒泡排序：bubble sort
+选择排序：selection sort
+归并排序：merge sort
+插入排序：insertion sort
+希尔排序：shell sort
+堆排序：heap sort
+桶排序：bucket sort
+
+粗排：Early Stage Ranking(ESR)
+精排：Late Stage Ranking(LSR)
+召回：Retrieval
+    召回通道：Retrieval Channel
+    离线指标：hit rate, recall, precision
+    文本召回：Text Retrieval
+    向量召回：Semantic Retrieval
+召回预排序：Pre-Ranking(after retrieval and before ESR)
+双塔模型：Two-Tower Model
+用户行为序列：User Interaction History
+排序融合公式：Value Model
+重排等等做多样性之类的工作: Control Layer
+内容冷启动：Content Cold Start
+多目标预估模型：Multi-Task Multi-Label
+    离线评测指标：offline evaluation metrics
+        国外：Normalized Entropy(NE)
+        国内：AUC
+
+在线评测指标：Online evaluation metrics
+    核心指标topline metrics/T0级别指标 T0 metrics: DAU, number of sessions.(session gap 5 minutes)
+    时长time spent, 曝光impression
+    T1级别指标:T1 metrics
+        各种event数量：like数量、share数量、click数量、comment数量
+
+搜索：
+    搜索相关性：Search Relevance
+    查询词理解：Query Understanding
+    向量召回：Embedding-based Retrieval
+    内容质量：Content Quality
+    时效性：Freshness
+    混排：Blending
+
+稀疏特征：Sparse Feature
+    类目：category
+    用户点击行为序列：user clicked posts history
+    用户点赞行为序列：user liked posts history
+稠密特征：Dense Feature
+特征交互：feature interaction
+
+sparse feature -> dense embedding representation via trainable embedding lookup table
+搜索量：search volume
+
+对齐：alignment
+预训练：pretraining
+有监督微调：supervised fine-tuning
+标注：annotation
+
+先序遍历 preorder traversal
+中序遍历 inorder traversal
+后序遍历 postorder traversal
+层次遍历 level order traversal
+单调栈 monotonic stack
+
+推词: entry point
+猜你想搜: null state
+相关搜索: related search
+视频推词: pivot
+sugg: type ahead
+
+召回: retrieval
+词权重: term importance
+
+
