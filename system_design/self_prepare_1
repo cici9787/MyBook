@@ -8,7 +8,8 @@ I’m Cecilia Chen, a Senior Search Machine Learning Engineer with over five yea
 building search systems for big platforms. In my current role at Zhihu, also known as China's Quora.
 I came here since June 2024.I lead projects to improve search experience,
 I've established a user experience evaluation framework and implemented a learning-to-rank (LTR) pipeline
-to enhance search satisfaction.We want to bring the most relevant, hign quality, freshness and authority content to our user.
+to enhance search satisfaction.We want to bring the most relevant, high quality,
+freshness and authority content to our user.
 I also in charge of last stage ranking on verticals and had completed the user name ranking module.
 
 Prior to this, I dedicated four years and 2 month at red Notes, also known as xiaohongshu.
@@ -16,17 +17,17 @@ There, I worked on improving search engine's core tech.
 I worked in the retrieval team to optimize lexical/text retrieval.I optimized various retrieval generators and
 built a offline retrieval evaluation system.I were able to improve regular and long-tailed query clicked through rate.
 I also played a key role in improving search volumn,
-through a series ranking and retrieval optimizations I were able to increase passive search volumn from 5% to 11%, and increased over
-twelve million search pv.
+through a series ranking and retrieval optimizations I were able to increase passive search volumn from 5% to 11%,
+and increased over twelve million search pv.
 
 I hold a Master degree in Computer Science from Northeastern University,
 where I graduated in the top 5% of my class and won the various Scholarship and Outstanding graduates.
-These equipped me with a solid foundation for later on in professinal career.
+These equipped me with a solid foundation in professional career later on.
 
 I'm particularly excited about the possibility of working for Meta.
-I look forward to the opportunity to bring my unique perspective and expertise to the table and drive impactful change.
+I look forward to the opportunity to bring my unique perspective and expertise to the table and drive impactful changes.
 
-2.If they hire you what role you gonna fit?
+2.If we hire you what role you gonna fit?
 I have worked on ranking, retrieval and entry-point optimization in the past.This given me a comprehensive
 pratical experience in search field.I would particularly like to work on ranking improvement.
 However I am flexible, if other relevant positions are open,I would like to fit in those areas as well.
@@ -35,9 +36,12 @@ However I am flexible, if other relevant positions are open,I would like to fit 
 I'm willing to change working places because I'm seeking new opportunities for growth and want to be a part of an
 international company.I believe that embracing more international and diversity will benifit my long-term
 professional development.
+I want to broaden my horizons and increase my knowledge.
+Life is a journey, and what matters most are the experiences and adventures along the way.
+
 I am open-minded about relocation. I see it as an opportunity for personal and professional growth.
 I'm confident in my ability to adapt quickly. I believe that working in a new environment will help me
-expand my horizons and be a more well-rounded person.
+expand my horizons and be a more flexible person.
 
 # I'm looking forward to exploring the new community, new relationships and integrating into local culture while
 focusing on my work at meta.
@@ -57,7 +61,7 @@ to grow and contribute on an international scale,
 while also making a real difference in the way people
 connect and communicate through technology.
 
-5.What are your interests in working here?
+5.What are your interests in working with us?
 I am extremely enthusiastic about joining Meta.
 Meta has consistently pushed the boundaries in social media,
 virtual reality and augmented reality.It's always been in the
@@ -70,11 +74,43 @@ I've got some skills that I think would be a good fit to meta.
 5.do you have any questions?
 Your recruiter will share more about the role you've applied for and the respective hiring team.
 
+称赞贵公司在某方面的实力
+
+6.what are your most challenging project? and how do you overcome it?
+One of the most challenging project I've worked on was optimizing
+entry point's ranking system.Which took place during my first
+half year of career.
+The main difficulty was that, with a shortage of manpower, I had to
+achieve ctr in a short period.The existing model was quite basic, a
+simple linear model with few statistical features.It suffered from a
+lack of personalization, and performed poorly on new scenes and
+long-tailed queries.
+I posses a comprehensive understanding of the entire search system.
+So that give me a chance to build ranking module from scratch.As I
+embarked on this project, I developed a deep understanding on the
+background and evolution of ranking. I carefully planned its structure,
+offline training process, online deployment, and incremental update mechanisms.
+It was a complex task that involved a lot of trial and error.But I came through,
+When implemented in business scenarios like "null state", "Search Filters",
+and "Related Search", we saw significant improvements.
+The daily search volumn increased by 840,000 pv,
+and the CTRs in these areas improved as well,
+with "null state" seeing a 27.63% increase,
+"Search Filters" 11.85%,
+and "Related Search" 12.32%.
+Additionally, I managed to reduce training and maintenance costs
+while enhancing the model's scalability for different business scenarios.
+This happend just in the beginning of my career.
+But it taught me the importance of perseverance, adaptability,
+and strategic thinking in the face of challenges.
+If you overcame with it you see growth.
+
+
+
 Appendix:
 1.background
 Equipped with a Master's Degree in Computer Science
 and had five years of practical experience in search algorithms.
-I posses a comprehensive understanding of the entire search system.
 
 2.experience
 I have a computer
