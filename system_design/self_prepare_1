@@ -2,33 +2,75 @@
  name
  school
  job and responsibilities
+
 self-introduction
-Good afternoon. I’m Cecilia Chen, a Senior Search Machine Learning Engineer with over five years of experience
-building search systems for big platforms. In my current role at Zhihu, where I lead projects to improve how search works,
-including the development of a user experience evaluation framework and the implementation of learning-to-rank (LTR) models
-to enhance content relevance, quality, freshness and authority.
+I’m Cecilia Chen, a Senior Search Machine Learning Engineer with over five years of experience
+building search systems for big platforms. In my current role at Zhihu, also known as China's Quora.
+I came here since June 2024.I lead projects to improve search experience,
+I've established a user experience evaluation framework and implemented a learning-to-rank (LTR) pipeline
+to enhance search satisfaction.We want to bring the most relevant, hign quality, freshness and authority content to our user.
+I also in charge of last stage ranking on verticals and had completed the user name ranking module.
 
-Prior to this, I spent four years at Xiaohongshu, also known as red notes.
-There, I worked on improving their search engine’s core tech.
-where I architected improvements to their search infrastructure. For instance, I redesigned their text retrieval pipeline by integrating term importance analysis into the relaxed retrieval model, achieving a 15% improvement in recall accuracy and driving a 10% increase in daily search engagement. Additionally, I modernized the search entry stack to support real-time query recommendations, scaling the system to serve 50 million daily active users.
+Prior to this, I dedicated four years and 2 month at red Notes, also known as xiaohongshu.
+There, I worked on improving search engine's core tech.
+I worked in the retrieval team to optimize lexical/text retrieval.I optimized various retrieval generators and
+built a offline retrieval evaluation system.I were able to improve regular and long-tailed query clicked through rate.
+I also played a key role in improving search volumn,
+through a series ranking and retrieval optimizations I were able to increase passive search volumn from 5% to 11%, and increased over
+twelve million search pv.
 
-My expertise spans the end-to-end search ecosystem: from lexical/semantic retrieval (e.g., hybrid EBR and Q2Q/D2Q generators) to ranking optimization and multi-objective blending strategies. A key accomplishment includes addressing overfitting in personalized recommendations by balancing diversity and relevance through dynamic ranking algorithms, which improved long-term user retention by 8% at Xiaohongshu.
-
-I’ve got a Master’s in Computer Science from Northeastern University,
+I hold a Master degree in Computer Science from Northeastern University,
 where I graduated in the top 5% of my class and won the various Scholarship and Outstanding graduates.
-But what really drives me is solving real-world problems—like balancing technical perfection with what users actually need.
+These equipped me with a solid foundation for later on in professinal career.
 
-I am eager to leverage this experience to contribute to [Company Name]’s mission of delivering intuitive, high-performance search solutions that empower users and drive measurable impact."
+I'm particularly excited about the possibility of working for Meta.
+I look forward to the opportunity to bring my unique perspective and expertise to the table and drive impactful change.
 
 2.If they hire you what role you gonna fit?
+I have worked on ranking, retrieval and entry-point optimization in the past.This given me a comprehensive
+pratical experience in search field.I would particularly like to work on ranking improvement.
+However I am flexible, if other relevant positions are open,I would like to fit in those areas as well.
 
-famous tourist place in singapore:
-1.Marina Bay Sands
-2.Sentosa Island
-    Universal Studio
-3.Merlion Park
-4.Gardens by the Bay
+3.why do you want to change your working places? What are your thoughts on relocation?
+I'm willing to change working places because I'm seeking new opportunities for growth and want to be a part of an
+international company.I believe that embracing more international and diversity will benifit my long-term
+professional development.
+I am open-minded about relocation. I see it as an opportunity for personal and professional growth.
+I'm confident in my ability to adapt quickly. I believe that working in a new environment will help me
+expand my horizons and be a more well-rounded person.
 
+# I'm looking forward to exploring the new community, new relationships and integrating into local culture while
+focusing on my work at meta.
+
+4.What are your long-term goals?
+In the long-term, I envision myself being an expert at searching field.
+I plan to continuously expand my knowledge and collaborate with
+professionals to create solutions that improve how people interact with
+digital content and with each other.
+
+Another crucial aspect of my long - term goals is that
+I've always been passionate about working for an international company.
+I believe embracing diversity will enhance my professional skills and also fuel my creativity.
+This is exactly why I'm so enthusiastic about the possibility of joining Meta.
+Its global presence and diverse workforce offer the perfect platform for me
+to grow and contribute on an international scale,
+while also making a real difference in the way people
+connect and communicate through technology.
+
+5.What are your interests in working here?
+I am extremely enthusiastic about joining Meta.
+Meta has consistently pushed the boundaries in social media,
+virtual reality and augmented reality.It's always been in the
+frontier on shaping how we connect with each other.I want to participate
+and be a part of this journey too.It would be a great environment where \
+people come from all walks of life, sharing their ideas and woking on
+some of amazing projects to make the world a better place.
+I've got some skills that I think would be a good fit to meta.
+
+5.do you have any questions?
+Your recruiter will share more about the role you've applied for and the respective hiring team.
+
+Appendix:
 1.background
 Equipped with a Master's Degree in Computer Science
 and had five years of practical experience in search algorithms.
@@ -55,35 +97,6 @@ on the Chinese Internet.
 Young people can obtain valuable information here, make new friends,
 discuss and share issues regarding their lives and work.
 
-3.long-term goals
-
-Another crucial aspect of my long - term goals is that
-I've always been passionate about working for an international company.
-I believe embracing diversity will enhance my professional skills and also fuel my creativity.
-This is exactly why I'm so enthusiastic about the possibility of joining Meta.
-Its global presence and diverse workforce offer the perfect platform for me
-to grow and contribute on an international scale,
-while also making a real difference in the way people
-connect and communicate through technology.
-
-4.your interest in working here
-In the long-term, I envision myself being an expert at searching field.
-I plan to continuously expand my knowledge and collaborate with
-professionals to create solutions that improve how people interact with
-digital content and with each other.
-I am extremely enthusiastic about joining Meta.
-Meta has consistently pushed the boundaries in social media,
-virtual reality and augmented reality.It's always been in the
-frontier on shaping how we connect with each other.I want to participate
-and be a part of this journey too.It would be a great environment where \
-people come from all walks of life, sharing their ideas and woking on
-some of amazing projects to make the world a better place.
-I've got some skills that I think would be a good fit to meta.
-
-
-
-
-Your recruiter will share more about the role you've applied for and the respective hiring team.
 
 meta's mission:
 Giving people the power to build community and bring the world closer together.
@@ -103,7 +116,6 @@ soft skills:
         Quickly learning and adapting to new tools, framework, technologies and environment.
 
 hard skills:
-
 1.Machine Learning Algorithms
     Supervised Learning
         Classification: Binary classification, Multi-class classification
@@ -124,3 +136,14 @@ hard skills:
 4.Big Data Techonologies:
     Using Haddop, Spark and Kafka for processing and managing large-scale datasets.
 
+
+文本召回: lexical retrieval
+向量召回：semantic retrieval
+混合检索：hybrid retrieval
+
+famous tourist place in singapore:
+1.Marina Bay Sands
+2.Sentosa Island
+    Universal Studio
+3.Merlion Park
+4.Gardens by the Bay
