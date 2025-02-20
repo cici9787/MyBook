@@ -5,6 +5,7 @@ It lacked personalization, had poor generalization, and performed badly in cold 
 The project aimed to develop a new model to boost click - through rate (CTR) and search volumn.
 
 Your Role and Responsibilities:
+I worked on the multi - scene multi - task ranking models before.
 I designed the model feature system, developed the data flow, and was in charge of the structure,
 offline training, online deployment, and incremental update mechanism of
 the multi - scene multi - task ranking model.
@@ -27,7 +28,7 @@ Additionally, I recognized the complexity of balancing multiple objectives in al
 2.Optimization of User experience (June 2024 - Present)
 Your Role and Responsibilities:
 I'm involved in search satisfaction modeling,
-This includes setting up satisfaction criteria, building models, and optimizing ranking strategies.
+Include setting up satisfaction criteria, building models, and optimizing ranking strategies.
 
 Challenges and Solutions:
 Establishing a satisfaction criteria system.
