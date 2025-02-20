@@ -1,24 +1,4 @@
-1.Community Search Retrieval Optimization (May 2023 - June 2024)
-Introduction:
-RedNote's search system has two main components, with community search handling about 400 million queries daily.
-
-Role and Responsibilities:
-I enhanced term importance and expansion in sparse retrieval, upgraded preliminary scoring,
-enriched and updated retrieval signals on the query and doc sides,
-on query side, included query term importance and synonyms,
-on doc side, I integrated multi-modal text extraction, doc search queries, and doc - generated queries.
-and collaborated with the engineering team on architecture transformation and offline evaluation tool establishment.
-
-Challenges and Solutions:
-For long-tailed queries it's not easy to find satisfaction results.
-To solve this, I upgraded the query reduction channel using a fusion model and optimized features.
-
-Results and Impact:
-There was an accumulated increase of +0.23pt in the proportion of clicked queries and
-+0.26pt in the proportion of clicked long - tail queries.
-The new offline evaluation tools set a good foundation for evaluate further improvements.
-
-2.Ranking Model Optimization (July 2020 - December 2020)
+1.Ranking Model Optimization (July 2020 - December 2020)
 Introduction:
 The existing query recommendation model at RedNote was a simple linear formula based on statistical features.
 It lacked personalization, had poor generalization, and performed badly in cold - start and long - tail query scenarios.
@@ -44,7 +24,7 @@ I gained a deep understanding of how vital data - driven decision - making is in
 Every step of creating the model, from feature selection to parameter tuning, should be guided by data analysis.
 Additionally, I recognized the complexity of balancing multiple objectives in algorithm design.
 
-3.Optimization of User experience (June 2024 - Present)
+2.Optimization of User experience (June 2024 - Present)
 Your Role and Responsibilities:
 I'm involved in search satisfaction modeling,
 This includes setting up satisfaction criteria, building models, and optimizing ranking strategies.
@@ -62,6 +42,27 @@ overall CTR by +0.351%,
 and daily search penetration rate by +0.113%.
 
 I also do some ranking mechanism optimization, such as diversity.
+
+3.Community Search Retrieval Optimization (May 2023 - June 2024)
+Introduction:
+RedNote's search system has two main components, with community search handling about 400 million queries daily.
+
+Role and Responsibilities:
+I enhanced term importance and expansion in sparse retrieval, upgraded preliminary scoring,
+enriched and updated retrieval signals on the query and doc sides,
+on query side, included query term importance and synonyms,
+on doc side, I integrated multi-modal text extraction, doc search queries, and doc - generated queries.
+and collaborated with the engineering team on architecture transformation and offline evaluation tool establishment.
+
+Challenges and Solutions:
+For long-tailed queries it's not easy to find satisfaction results.
+To solve this, I upgraded the query reduction channel using a fusion model and optimized features.
+
+Results and Impact:
+There was an accumulated increase of +0.23pt in the proportion of clicked queries and
++0.26pt in the proportion of clicked long - tail queries.
+The new offline evaluation tools set a good foundation for evaluate further improvements.
+
 4. Ranking Mechanism Optimization - Diversity (May 2020 - Feb 2021)
 
 Introduction: The project aimed to solve issues such as similar note/brand/cover - image clustering in general search and similar query aggregation in query recommendation scenarios.
