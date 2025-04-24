@@ -1,0 +1,60 @@
+(1)MRR: Mean Reciprocal Rank
+
+MRR = 1/m * sum(1/ranki)
+
+             Reciprocal Rank
+0 0 1 0 0        1/3
+1 0 0 1 0         1
+0 0 1 1 0        1/3
+0 0 0 0 0         0
+
+(1/3 + 1 + 1/3 + 0)/4 = 0.417
+
+(2)Recall@K
+number of relevant items among top k items in the output list / total relevant items
+
+(3)Precision@K
+number of relevant items among top k items in the output list / k
+             Precision@5
+1 1 0 0 0       2/5
+0 1 0 0 1       2/5
+
+(4)mAP
+average precision
+AP = sum(i = 1...k)Precision@i if i'th item is relevant to the user / total relevant items
+               Average Precision
+0 0 1 0 0           1/3 / 1 = 0.33
+1 0 0 1 0           (1 + 2 / 4) / 2 = 0.75
+0 0 1 1 0           (1/3 + 2/4)/2 = 0.41
+0 0 0 0 0           0
+
+MAP=(0.33 + 0.75 +0.41 + 0)/4 = 0.37
+
+(5)DCG
+cumulative gain of items in a list:
+DCGp = sum(i=1 p)rel(i) / log2(i + 1)
+
+nDCGp = DCGp / IDCGp
+
+     0      5       1      4       2
+   0/log2 5/log3 1/log4 4/log5  2/log6
+   sum(all) = 6.151
+
+     5      4     2      1      0
+   5/log2 4log2 2log4 1/log5 0/log6
+   sum(all) = 8.9543
+
+nDCG = DCG / IDCG = 6.151 / 8.9543 = 0.6869
+
+Online Metrics
+CTR(click through rate):
+CTR = Number of clicked images / Total number of suggested images
+
+Retrival:
+Embedding Generation Service
+Nearest Neighbor service
+    (1) Exact Nearest Neighbor
+    (2) Approximate Nearest Neighbor
+        (a) Tree-based ANN
+        (b) Locality-sensitive hashing
+        (c) Clustering-based ANN
