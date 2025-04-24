@@ -1,0 +1,25 @@
+Coding题需要40分钟做完2道，可能是2道medium，可能是1道medium、1道hard。需要买LeetCode会员，
+看上面Meta面试题，200多道，从高频到低频刷，高频要刷2遍。
+面试没有自我介绍，面试官会让你立刻开始做题。
+做题的时候需要边做边解释代码。写完之后解释为什么结果是正确的，需要用1两个例子。
+
+Behavior interview也是八股文，比如how do you deal with conflicts with your manager。
+网上有题库，事先要准备小作文。如果碰到你没准备过的，你可以直接说我没遇到这样的情况。
+
+比较常见的ML Design面试：
+Design a recommendation ranking system、
+design people you may know、
+design a search ranking system、
+design a type-ahead system (在小红书叫SUG，这边叫type-head或者auto-completion)。
+
+需要你讲模型、
+特征、
+training、
+inference、
+offline evaluation、
+online evaluation、
+monitoring。
+纯八股文，不要带有任何自己工作经验，就当是你从来没有实际做过推荐系统或者搜索引擎。
+要快一点讲，不要被interviewer牵着鼻子走，
+要你自己主动把所有重点都覆盖。
+具体参考Machine Learning System Design Interview by Ali Aminian & Alex Xu。

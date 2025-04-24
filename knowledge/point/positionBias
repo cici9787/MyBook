@@ -1,0 +1,22 @@
+In ranking and recommendation system, how to deal with position bias.
+
+(1) Data collection and preprocessing
+stratified sampling: use stratified sampling to ensure samples from different
+positions are evenly distributed.
+data augmentation: use augment for less-represented positions.
+(2) Model design and training
+(a)position-aware features: add a feature indicating the position in ranking to the
+input of the model.allow the model to consider impact of the position on user's
+behavior.
+(b) use unbiased estimator.Instead of using the traditional CTR as the evaluation
+metric, use unbiased estimators such as inverse propensity-weighted estimator.
+This estimator correct the bias by postion throught weighting the clicks according
+to the probability of the itembeing shown in particular postion.
+(c) Regularization.Apply regularization to prevent the model from over-fitting the
+position-related features.Use L1 or L2 to penalize large weights assigned to position-
+related features.
+
+// https://baijiahao.baidu.com/s?id=1768777831482132352&wfr=spider&for=pc
+P(y = 1|x, pos) = P(seen | pos) * P(Y|x, seen)
+add features
+change models to predict probility of seen.
