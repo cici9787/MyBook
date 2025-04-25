@@ -96,10 +96,10 @@ model_dir = snapshot_download(
 
 # Transformers加载模型权重
 tokenizer = AutoTokenizer.from_pretrained(
-    "./qwen/Qwen2-1___5B-Instruct/", use_fast=False, trust_remote_code=True
+    model_dir, use_fast=False, trust_remote_code=True
 )
 model = AutoModelForCausalLM.from_pretrained(
-    "./qwen/Qwen2-1___5B-Instruct/", device_map="auto", torch_dtype=torch.bfloat16
+    model_dir, device_map="auto", torch_dtype=torch.bfloat16
 )
 model.enable_input_require_grads()  # 开启梯度检查点时，要执行该方法
 
