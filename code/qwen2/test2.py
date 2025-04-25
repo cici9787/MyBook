@@ -72,6 +72,7 @@ def train_qwen2():
 
     # 加载训练数据
     train_df = pd.read_json(train_jsonl_new_path, lines=True)
+    print("@check 111")
     print("train_df:", train_df)
     # 先删除列
     new_train_df = train_df.drop(columns=train_df.columns)
@@ -116,15 +117,15 @@ def train_qwen2():
         }
     )
 
-    trainer = Trainer(
-        model=model,
-        args=args,
-        train_dataset=train_dataset,
-        data_collator=DataCollatorForSeq2Seq(tokenizer=tokenizer, padding=True),
-        callbacks=[swanlab_callback],
-    )
-
-    trainer.train()
+    # trainer = Trainer(
+    #     model=model,
+    #     args=args,
+    #     train_dataset=train_dataset,
+    #     data_collator=DataCollatorForSeq2Seq(tokenizer=tokenizer, padding=True),
+    #     callbacks=[swanlab_callback],
+    # )
+    #
+    # trainer.train()
 
     # 保存训练好的模型
     # trainer.save_model("./output/Qwen1.5")
