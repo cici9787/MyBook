@@ -75,10 +75,11 @@ def train_qwen2():
     print("@check 11111")
     print("train_df:", train_df)
     # 先删除列
-    new_train_df = train_df.drop(columns=train_df.columns)
+    # new_train_df = train_df.drop(columns=train_df.columns)
     # 应用函数
-    train_dataset = new_train_df.apply(process_func, axis=1)
+    # train_dataset = new_train_df.apply(process_func, axis=1)
     # train_dataset = train_df.map(process_func, remove_columns=train_df.columns)
+    train_dataset = train_df.apply(process_func, axis=1).tolist()
 
     # 定义Lora配置
     config = LoraConfig(
