@@ -104,11 +104,12 @@ model = AutoModelForCausalLM.from_pretrained(
 model.enable_input_require_grads()  # 开启梯度检查点时，要执行该方法
 
 # 加载、处理数据集和测试集
-train_dataset_path = "train.jsonl"
-test_dataset_path = "test.jsonl"
+data_path = "./zh_cls_fudan-news/"
+train_dataset_path = data_path + "train.jsonl"
+test_dataset_path = data_path + "test.jsonl"
 
-train_jsonl_new_path = "new_train.jsonl"
-test_jsonl_new_path = "new_test.jsonl"
+train_jsonl_new_path = data_path + "new_train.jsonl"
+test_jsonl_new_path = data_path + "new_test.jsonl"
 
 if not os.path.exists(train_jsonl_new_path):
     dataset_jsonl_transfer(train_dataset_path, train_jsonl_new_path)
