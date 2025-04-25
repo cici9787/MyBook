@@ -125,7 +125,7 @@ def train_qwen2():
         callbacks=[swanlab_callback],
     )
 
-    # trainer.train()
+    trainer.train()
 
     # 保存训练好的模型
     # trainer.save_model("./output/Qwen1.5")
@@ -136,3 +136,5 @@ if __name__ == "__main__":
     print("start")
     model, tokenizer = train_qwen2()
     print("end")
+
+# 3080上好用, 4090上不好用
