@@ -31,11 +31,32 @@ def dataset_jsonl_transfer(origin_path, new_path):
 import pandas as pd
 import torch
 
-def process_func(example):
+# def process_func(example):
+#     MAX_LENGTH = 384
+#     input_ids, attention_mask, labels = [], [], []
+#
+#     instruction = tokenizer(f"系统\n你是一个文本分类领域的专家，你会接收到一段文本和几个潜在的分类选项，请输出文本内容的正确类型\n用户\n{example['input']}\n助手\n", add_special_tokens=False)
+#     response = tokenizer(f"{example['output']}", add_special_tokens=False)
+#
+#     input_ids = instruction["input_ids"] + response["input_ids"] + [tokenizer.pad_token_id]
+#     attention_mask = instruction["attention_mask"] + response["attention_mask"] + [1]
+#
+#     labels = [-100] * len(instruction["input_ids"]) + response["input_ids"] + [tokenizer.pad_token_id]
+#
+#     if len(input_ids) > MAX_LENGTH:
+#         input_ids = input_ids[:MAX_LENGTH]
+#         attention_mask = attention_mask[:MAX_LENGTH]
+#         labels = labels[:MAX_LENGTH]
+#
+#     return {"input_ids": input_ids, "attention_mask": attention_mask, "labels": labels}
+
+def process_func(example, tokenizer):  # 修改函数定义
     MAX_LENGTH = 384
     input_ids, attention_mask, labels = [], [], []
 
-    instruction = tokenizer(f"系统\n你是一个文本分类领域的专家，你会接收到一段文本和几个潜在的分类选项，请输出文本内容的正确类型\n用户\n{example['input']}\n助手\n", add_special_tokens=False)
+    instruction = tokenizer(
+        f"系统\n你是一个文本分类领域的专家，你会接收到一段文本和几个潜在的分类选项，请输出文本内容的正确类型\n用户\n{example['input']}\n助手\n",
+        add_special_tokens=False)
     response = tokenizer(f"{example['output']}", add_special_tokens=False)
 
     input_ids = instruction["input_ids"] + response["input_ids"] + [tokenizer.pad_token_id]
@@ -79,7 +100,8 @@ def train_qwen2():
     # 应用函数
     # train_dataset = new_train_df.apply(process_func, axis=1)
     # train_dataset = train_df.map(process_func, remove_columns=train_df.columns)
-    train_dataset = train_df.apply(process_func, axis=1).tolist()
+    # train_dataset = train_df.apply(process_func, axis=1).tolist()
+    train_dataset = train_df.apply(lambda x: process_func(x, tokenizer), axis=1).tolist()
 
     # 定义Lora配置
     config = LoraConfig(
