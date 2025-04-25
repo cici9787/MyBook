@@ -60,10 +60,11 @@ def train_qwen2():
     model = AutoModelForCausalLM.from_pretrained(model_dir, device_map="auto", torch_dtype=torch.bfloat16)
     model.enable_input_require_grads()
 
-    train_dataset_path = "train.jsonl"
-    test_dataset_path = "test.jsonl"
-    train_jsonl_new_path = "new_train.jsonl"
-    test_jsonl_new_path = "new_test.jsonl"
+    data_path = "./zh_cls_fudan-news/"
+    train_dataset_path = data_path + "train.jsonl"
+    test_dataset_path = data_path + "test.jsonl"
+    train_jsonl_new_path = data_path + "new_train.jsonl"
+    test_jsonl_new_path = data_path + "new_test.jsonl"
 
     # 转换并保存数据集
     dataset_jsonl_transfer(train_dataset_path, train_jsonl_new_path)
