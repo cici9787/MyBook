@@ -2,11 +2,11 @@ from modelscope import snapshot_download
 from transformers import AutoTokenizer, AutoModelForCausalLM
 import torch
 import json
-
-model_dir = snapshot_download("qwen/Qwen2-1.5B-Instruct", cache_dir = '/root/autodl-tmp')
-tokenizer = AutoTokenizer.from_pretrained(model_dir, use_fast=False, trust_remote_code=True)
-model = AutoModelForCausalLM.from_pretrained(model_dir, device_map = "auto", torch_dtype = torch.bfloat16)
-print(model.eval())
+#
+# model_dir = snapshot_download("qwen/Qwen2-1.5B-Instruct", cache_dir = '/root/autodl-tmp')
+# tokenizer = AutoTokenizer.from_pretrained(model_dir, use_fast=False, trust_remote_code=True)
+# model = AutoModelForCausalLM.from_pretrained(model_dir, device_map = "auto", torch_dtype = torch.bfloat16)
+# print(model.eval())
 
 import json
 
@@ -55,7 +55,7 @@ from peft import LoraConfig, TaskType, get_peft_model
 from transformers import TrainingArguments, Trainer, DataCollatorForSeq2Seq
 
 def train_qwen2():
-    model_dir = snapshot_download("qwen/Qwen2-1.5B-Instruct", cache_dir="./")
+    model_dir = snapshot_download("qwen/Qwen2-1.5B-Instruct", cache_dir="/root/autodl-tmp")
     tokenizer = AutoTokenizer.from_pretrained(model_dir, use_fast=False, trust_remote_code=True)
     model = AutoModelForCausalLM.from_pretrained(model_dir, device_map="auto", torch_dtype=torch.bfloat16)
     model.enable_input_require_grads()
