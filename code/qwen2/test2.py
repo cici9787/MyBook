@@ -72,6 +72,7 @@ def train_qwen2():
 
     # 加载训练数据
     train_df = pd.read_json(train_jsonl_new_path, lines=True)
+    print("train_df:", train_df)
     # 先删除列
     new_train_df = train_df.drop(columns=train_df.columns)
     # 应用函数
