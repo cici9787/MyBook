@@ -44,3 +44,6 @@ generated_ids = [
 print("generated_ids:", generated_ids)
 response = tokenizer.batch_decode(generated_ids, skip_special_tokens=True)[0]
 print("response:", response)
+
+# cd /root/.ssh
+# cat id_rsa.pub
