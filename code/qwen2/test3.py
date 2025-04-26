@@ -16,6 +16,7 @@ import swanlab
 
 model_path = "/root/autodl-tmp/"
 data_path = "./zh_cls_fudan-news/"
+token_path = model_path + "/qwen/Qwen2-1___5B-Instruct/"
 
 # model_path = "E:\model\qwen\Qwen2-1___5B-Instruct"
 # data_path = 'E:/code/MyBook/code/qwen2/zh_cls_fudan-news/'
@@ -100,10 +101,10 @@ model_dir = snapshot_download(
     "qwen/Qwen2-1.5B-Instruct", cache_dir=model_path, revision="master"
 )
 
-# # Transformers加载模型权重
-# tokenizer = AutoTokenizer.from_pretrained(
-#     "./qwen/Qwen2-1___5B-Instruct/", use_fast=False, trust_remote_code=True
-# )
+# Transformers加载模型权重
+tokenizer = AutoTokenizer.from_pretrained(
+    token_path, use_fast=False, trust_remote_code=True
+)
 # model = AutoModelForCausalLM.from_pretrained(
 #     "./qwen/Qwen2-1___5B-Instruct/", device_map="auto", torch_dtype=torch.bfloat16
 # )
