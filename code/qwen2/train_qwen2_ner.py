@@ -115,7 +115,7 @@ model = AutoModelForCausalLM.from_pretrained(model_dir, device_map="auto", torch
 model.enable_input_require_grads()  # 开启梯度检查点时，要执行该方法
 
 # 加载、处理数据集和测试集
-train_dataset_path = data_path + "ccfbdci.jsonl"
+train_dataset_path = data_path + "test_ccfbdci.jsonl"
 train_jsonl_new_path = data_path + "ccf_train.jsonl"
 
 if not os.path.exists(train_jsonl_new_path):
@@ -127,3 +127,4 @@ train_df = total_df[int(len(total_df) * 0.1):]
 print("train_df:", train_df)
 train_ds = Dataset.from_pandas(train_df)
 train_dataset = train_ds.map(process_func, remove_columns=train_ds.column_names)
+print("train_dataset:", train_dataset)
