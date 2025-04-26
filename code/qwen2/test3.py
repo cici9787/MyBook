@@ -14,6 +14,11 @@ from transformers import (
 import os
 import swanlab
 
+model_path = "/root/autodl-tmp"
+data_path = "./zh_cls_fudan-news/"
+
+# model_path = "E:/model"
+# data_path = 'E:/code/MyBook/code/qwen2/zh_cls_fudan-news/'
 
 def dataset_jsonl_transfer(origin_path, new_path):
     """
@@ -90,8 +95,6 @@ def predict(messages, model, tokenizer):
 
     return response
 
-model_path = "/root/autodl-tmp"
-# model_path = "E:/model"
 # 在modelscope上下载Qwen模型到本地目录下
 model_dir = snapshot_download(
     "qwen/Qwen2-1.5B-Instruct", cache_dir=model_path, revision="master"
@@ -108,8 +111,6 @@ model = AutoModelForCausalLM.from_pretrained(
 model.enable_input_require_grads()  # 开启梯度检查点时，要执行该方法
 
 # 加载、处理数据集和测试集
-# data_path = "./zh_cls_fudan-news/"
-data_path = 'E:/code/MyBook/code/qwen2/zh_cls_fudan-news/'
 train_dataset_path = data_path + "train.jsonl"
 test_dataset_path = data_path + "test.jsonl"
 
