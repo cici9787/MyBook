@@ -172,3 +172,27 @@ trainer = Trainer(
     data_collator=DataCollatorForSeq2Seq(tokenizer=tokenizer, padding=True),
     callbacks=[swanlab_callback],
 )
+
+trainer.train()
+
+# 用测试集的随机20条，测试模型
+# 得到测试集
+test_df = total_df[:int(len(total_df) * 0.1)].sample(n=20)
+
+test_text_list = []
+for index, row in test_df.iterrows():
+    instruction = row['instruction']
+    input_value = row['input']
+
+    messages = [
+        {"role": "system", "content": f"{instruction}"},
+        {"role": "user", "content": f"{input_value}"}
+    ]
+
+    response = predict(messages, model, tokenizer)
+    messages.append({"role": "assistant", "content": f"{response}"})
+    result_text = f"{messages[0]}\n\n{messages[1]}\n\n{messages[2]}"
+    test_text_list.append(swanlab.Text(result_text, caption=response))
+
+swanlab.log({"Prediction": test_text_list})
+swanlab.finish()
