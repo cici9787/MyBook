@@ -177,7 +177,8 @@ trainer.train()
 
 # 用测试集的随机20条，测试模型
 # 得到测试集
-test_df = total_df[:int(len(total_df) * 0.1)].sample(n=20)
+# test_df = total_df[:int(len(total_df) * 0.1)].sample(n=20)
+test_df = total_df[:5]
 
 test_text_list = []
 for index, row in test_df.iterrows():
