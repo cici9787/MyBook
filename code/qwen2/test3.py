@@ -14,10 +14,10 @@ from transformers import (
 import os
 import swanlab
 
-model_path = "/root/autodl-tmp"
+model_path = "/root/autodl-tmp/qwen/Qwen2-1___5B-Instruct"
 data_path = "./zh_cls_fudan-news/"
 
-# model_path = "E:/model"
+# model_path = "E:\model\qwen\Qwen2-1___5B-Instruct"
 # data_path = 'E:/code/MyBook/code/qwen2/zh_cls_fudan-news/'
 
 def dataset_jsonl_transfer(origin_path, new_path):
@@ -99,7 +99,6 @@ def predict(messages, model, tokenizer):
 model_dir = snapshot_download(
     "qwen/Qwen2-1.5B-Instruct", cache_dir=model_path, revision="master"
 )
-model_path = "E:\model\qwen\Qwen2-1___5B-Instruct"
 
 # Transformers加载模型权重
 tokenizer = AutoTokenizer.from_pretrained(
