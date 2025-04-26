@@ -16,7 +16,7 @@ def dataset_jsonl_transfer(origin_path, new_path):
     messages = []
 
     # 读取旧的JSONL文件
-    with open(origin_path, "r") as file:
+    with open(origin_path, "r", encoding="utf-8") as file:
         for line in file:
             # 解析每一行的json数据
             data = json.loads(line)
@@ -103,9 +103,10 @@ def predict(messages, model, tokenizer):
     return response
 
 model_id = "qwen/Qwen2-1.5B-Instruct"
-
-model_path = "/root/autodl-tmp/"
 data_path = "./data/"
+
+# model_path = "/root/autodl-tmp/"
+model_path = "E://model//" # local env
 
 model_dir = snapshot_download(model_id, cache_dir=model_path, revision="master")
 
