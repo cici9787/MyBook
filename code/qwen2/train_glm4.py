@@ -117,3 +117,68 @@ if not os.path.exists(test_jsonl_new_path):
 train_df = pd.read_json(train_jsonl_new_path, lines=True)
 train_ds = Dataset.from_pandas(train_df)
 train_dataset = train_ds.map(process_func, remove_columns=train_ds.column_names)
+
+config = LoraConfig(
+    task_type=TaskType.CAUSAL_LM,
+    target_modules=["query_key_value", "dense", "dense_h_to_4h", "activation_func", "dense_4h_to_h"],
+    inference_mode=False,  # 训练模式
+    r=8,  # Lora 秩
+    lora_alpha=32,  # Lora alaph，具体作用参见 Lora 原理
+    lora_dropout=0.1,  # Dropout 比例
+)
+
+model = get_peft_model(model, config)
+
+args = TrainingArguments(
+    output_dir="./output/GLM4-9b",
+    per_device_train_batch_size=4,
+    gradient_accumulation_steps=4,
+    logging_steps=10,
+    num_train_epochs=2,
+    save_steps=100,
+    learning_rate=1e-4,
+    save_on_each_node=True,
+    gradient_checkpointing=True,
+    report_to="none",
+)
+
+swanlab_callback = SwanLabCallback(
+    project="GLM4-fintune",
+    experiment_name="GLM4-9B-Chat",
+    description="使用智谱GLM4-9B-Chat模型在zh_cls_fudan-news数据集上微调。",
+    config={
+        "model": "ZhipuAI/glm-4-9b-chat",
+        "dataset": "huangjintao/zh_cls_fudan-news",
+    },
+)
+
+trainer = Trainer(
+    model=model,
+    args=args,
+    train_dataset=train_dataset,
+    data_collator=DataCollatorForSeq2Seq(tokenizer=tokenizer, padding=True),
+    callbacks=[swanlab_callback],
+)
+
+trainer.train()
+
+# 用测试集的前10条，测试模型
+test_df = pd.read_json(test_jsonl_new_path, lines=True)[:10]
+
+test_text_list = []
+for index, row in test_df.iterrows():
+    instruction = row['instruction']
+    input_value = row['input']
+
+    messages = [
+        {"role": "system", "content": f"{instruction}"},
+        {"role": "user", "content": f"{input_value}"}
+    ]
+
+    response = predict(messages, model, tokenizer)
+    messages.append({"role": "assistant", "content": f"{response}"})
+    result_text = f"{messages[0]}\n\n{messages[1]}\n\n{messages[2]}"
+    test_text_list.append(swanlab.Text(result_text, caption=response))
+
+swanlab.log({"Prediction": test_text_list})
+swanlab.finish()
