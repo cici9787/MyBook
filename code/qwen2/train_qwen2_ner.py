@@ -116,3 +116,16 @@ model_dir = snapshot_download(model_id, cache_dir=model_path, revision="master")
 tokenizer = AutoTokenizer.from_pretrained(model_dir, use_fast=False, trust_remote_code=True)
 model = AutoModelForCausalLM.from_pretrained(model_dir, device_map="auto", torch_dtype=torch.bfloat16)
 model.enable_input_require_grads()  # 开启梯度检查点时，要执行该方法
+
+# 加载、处理数据集和测试集
+train_dataset_path = "ccfbdci.jsonl"
+train_jsonl_new_path = "ccf_train.jsonl"
+
+if not os.path.exists(train_jsonl_new_path):
+    dataset_jsonl_transfer(train_dataset_path, train_jsonl_new_path)
+
+# 得到训练集
+total_df = pd.read_json(train_jsonl_new_path, lines=True)
+train_df = total_df[int(len(total_df) * 0.1):]
+train_ds = Dataset.from_pandas(train_df)
+train_dataset = train_ds.map(process_func, remove_columns=train_ds.column_names)
