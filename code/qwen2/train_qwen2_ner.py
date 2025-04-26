@@ -9,6 +9,8 @@ from transformers import AutoModelForCausalLM, TrainingArguments, Trainer, DataC
 import os
 import swanlab
 
+from code.qwen2.train_qwen1 import data_path
+
 
 def dataset_jsonl_transfer(origin_path, new_path):
     """
@@ -104,11 +106,9 @@ def predict(messages, model, tokenizer):
     return response
 
 model_id = "qwen/Qwen2-1.5B-Instruct"
-# model_dir = "./qwen/Qwen2-1___5B-Instruct"
 
 model_path = "/root/autodl-tmp/"
-data_path = "./zh_cls_fudan-news/"
-token_path = model_path + "/qwen/Qwen2-1___5B-Instruct/"
+data_path = "./data/"
 
 model_dir = snapshot_download(model_id, cache_dir=model_path, revision="master")
 
@@ -118,8 +118,8 @@ model = AutoModelForCausalLM.from_pretrained(model_dir, device_map="auto", torch
 model.enable_input_require_grads()  # 开启梯度检查点时，要执行该方法
 
 # 加载、处理数据集和测试集
-train_dataset_path = "ccfbdci.jsonl"
-train_jsonl_new_path = "ccf_train.jsonl"
+train_dataset_path = data_path + "ccfbdci.jsonl"
+train_jsonl_new_path = data_path + "ccf_train.jsonl"
 
 if not os.path.exists(train_jsonl_new_path):
     dataset_jsonl_transfer(train_dataset_path, train_jsonl_new_path)
@@ -127,5 +127,6 @@ if not os.path.exists(train_jsonl_new_path):
 # 得到训练集
 total_df = pd.read_json(train_jsonl_new_path, lines=True)
 train_df = total_df[int(len(total_df) * 0.1):]
+print("train_df:", train_df)
 train_ds = Dataset.from_pandas(train_df)
 train_dataset = train_ds.map(process_func, remove_columns=train_ds.column_names)
