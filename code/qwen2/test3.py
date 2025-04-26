@@ -14,7 +14,7 @@ from transformers import (
 import os
 import swanlab
 
-model_path = "/root/autodl-tmp/qwen/Qwen2-1___5B-Instruct"
+model_path = "/root/autodl-tmp/qwen/Qwen2-1.5B-Instruct"
 data_path = "./zh_cls_fudan-news/"
 
 # model_path = "E:\model\qwen\Qwen2-1___5B-Instruct"
