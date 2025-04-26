@@ -22,7 +22,7 @@ def dataset_jsonl_transfer(origin_path, new_path):
     messages = []
 
     # 读取旧的JSONL文件
-    with open(origin_path, "r") as file:
+    with open(origin_path, "r", encoding="utf-8") as file:
         print("@check origin_path:", origin_path)
         for line in file:
             print("@check line:", line)
@@ -44,7 +44,7 @@ def dataset_jsonl_transfer(origin_path, new_path):
             file.write(json.dumps(message, ensure_ascii=False) + "\n")
 
 
-def process_func(example):
+def process_func(example): # 这一步耗时, 处理数据集的过程。
     """
     将数据集进行预处理
     """
@@ -91,12 +91,12 @@ def predict(messages, model, tokenizer):
     return response
 
 model_path = "/root/autodl-tmp"
-model_path = "/root/autodl-tmp"
+# model_path = "E:/model"
 # 在modelscope上下载Qwen模型到本地目录下
-# model_dir = snapshot_download(
-#     "qwen/Qwen2-1.5B-Instruct", cache_dir=model_path, revision="master"
-# )
-model_path = "/root/autodl-tmp/qwen/Qwen2-1.5B-Instruct"
+model_dir = snapshot_download(
+    "qwen/Qwen2-1.5B-Instruct", cache_dir=model_path, revision="master"
+)
+model_path = "E:\model\qwen\Qwen2-1___5B-Instruct"
 
 # Transformers加载模型权重
 tokenizer = AutoTokenizer.from_pretrained(
@@ -108,12 +108,13 @@ model = AutoModelForCausalLM.from_pretrained(
 model.enable_input_require_grads()  # 开启梯度检查点时，要执行该方法
 
 # 加载、处理数据集和测试集
-data_path = "./zh_cls_fudan-news/"
+# data_path = "./zh_cls_fudan-news/"
+data_path = 'E:/code/MyBook/code/qwen2/zh_cls_fudan-news/'
 train_dataset_path = data_path + "train.jsonl"
 test_dataset_path = data_path + "test.jsonl"
 
-train_jsonl_new_path = data_path + "new_train.jsonl"
-test_jsonl_new_path = data_path + "new_test.jsonl"
+train_jsonl_new_path = data_path + "test_new_train.jsonl"
+test_jsonl_new_path = data_path + "test_new_test.jsonl"
 
 if not os.path.exists(train_jsonl_new_path):
     dataset_jsonl_transfer(train_dataset_path, train_jsonl_new_path)
@@ -124,76 +125,78 @@ if not os.path.exists(test_jsonl_new_path):
 train_df = pd.read_json(train_jsonl_new_path, lines=True)
 train_ds = Dataset.from_pandas(train_df)
 train_dataset = train_ds.map(process_func, remove_columns=train_ds.column_names)
-#
-# config = LoraConfig(
-#     task_type=TaskType.CAUSAL_LM,
-#     target_modules=[
-#         "q_proj",
-#         "k_proj",
-#         "v_proj",
-#         "o_proj",
-#         "gate_proj",
-#         "up_proj",
-#         "down_proj",
-#     ],
-#     inference_mode=False,  # 训练模式
-#     r=8,  # Lora 秩
-#     lora_alpha=32,  # Lora alaph，具体作用参见 Lora 原理
-#     lora_dropout=0.1,  # Dropout 比例
-# )
 
-# model = get_peft_model(model, config)
-#
-# args = TrainingArguments(
-#     output_dir="./output/Qwen1.5",
-#     per_device_train_batch_size=4,
-#     gradient_accumulation_steps=4,
-#     logging_steps=10,
-#     num_train_epochs=2,
-#     save_steps=100,
-#     learning_rate=1e-4,
-#     save_on_each_node=True,
-#     gradient_checkpointing=True,
-#     report_to="none",
-# )
+config = LoraConfig(
+    task_type=TaskType.CAUSAL_LM,
+    target_modules=[
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj",
+        "gate_proj",
+        "up_proj",
+        "down_proj",
+    ],
+    inference_mode=False,  # 训练模式
+    r=8,  # Lora 秩
+    lora_alpha=32,  # Lora alaph，具体作用参见 Lora 原理
+    lora_dropout=0.1,  # Dropout 比例
+)
 
-# swanlab_callback = SwanLabCallback(
-#     project="Qwen2-fintune",
-#     experiment_name="Qwen2-1.5B-Instruct",
-#     description="使用通义千问Qwen2-1.5B-Instruct模型在zh_cls_fudan-news数据集上微调。",
-#     config={
-#         "model": "qwen/Qwen2-1.5B-Instruct",
-#         "dataset": "huangjintao/zh_cls_fudan-news",
-#     },
-# )
-#
-# trainer = Trainer(
-#     model=model,
-#     args=args,
-#     train_dataset=train_dataset,
-#     data_collator=DataCollatorForSeq2Seq(tokenizer=tokenizer, padding=True),
-#     callbacks=[swanlab_callback],
-# )
+model = get_peft_model(model, config)
 
-# trainer.train()
+args = TrainingArguments(
+    output_dir="./output/Qwen1.5",
+    per_device_train_batch_size=4,
+    gradient_accumulation_steps=4,
+    logging_steps=10,
+    num_train_epochs=2,
+    save_steps=100,
+    learning_rate=1e-4,
+    save_on_each_node=True,
+    gradient_checkpointing=True,
+    report_to="none",
+)
 
-# # 用测试集的前10条，测试模型
-# test_df = pd.read_json(test_jsonl_new_path, lines=True)[:10]
-#
-# test_text_list = []
-# for index, row in test_df.iterrows():
-#     instruction = row["instruction"]
-#     input_value = row["input"]
-#
-#     messages = [
-#         {"role": "system", "content": f"{instruction}"},
-#         {"role": "user", "content": f"{input_value}"},
-#     ]
-#
-#     response = predict(messages, model, tokenizer)
-#     messages.append({"role": "assistant", "content": f"{response}"})
-#     result_text = f"{messages[0]}\n\n{messages[1]}\n\n{messages[2]}"
-#     test_text_list.append(swanlab.Text(result_text, caption=response))
-#
-# swanlab.log({"Prediction": test_text_list})
-# swanlab.finish()
+swanlab_callback = SwanLabCallback(
+    project="Qwen2-fintune",
+    experiment_name="Qwen2-1.5B-Instruct",
+    description="使用通义千问Qwen2-1.5B-Instruct模型在zh_cls_fudan-news数据集上微调。",
+    config={
+        "model": "qwen/Qwen2-1.5B-Instruct",
+        "dataset": "huangjintao/zh_cls_fudan-news",
+    },
+)
+
+trainer = Trainer(
+    model=model,
+    args=args,
+    train_dataset=train_dataset,
+    data_collator=DataCollatorForSeq2Seq(tokenizer=tokenizer, padding=True),
+    callbacks=[swanlab_callback],
+)
+
+trainer.train()
+
+# 用测试集的前10条，测试模型
+test_df = pd.read_json(test_jsonl_new_path, lines=True)[:10]
+print("@check test_df:", test_df)
+
+test_text_list = []
+for index, row in test_df.iterrows():
+    instruction = row["instruction"]
+    input_value = row["input"]
+
+    messages = [
+        {"role": "system", "content": f"{instruction}"},
+        {"role": "user", "content": f"{input_value}"},
+    ]
+
+    response = predict(messages, model, tokenizer)
+    print("@check response:", response)
+    messages.append({"role": "assistant", "content": f"{response}"})
+    result_text = f"{messages[0]}\n\n{messages[1]}\n\n{messages[2]}"
+    test_text_list.append(swanlab.Text(result_text, caption=response))
+
+swanlab.log({"@check Prediction": test_text_list})
+swanlab.finish()
