@@ -105,11 +105,11 @@ model_dir = snapshot_download(
 tokenizer = AutoTokenizer.from_pretrained(
     token_path, use_fast=False, trust_remote_code=True
 )
-# model = AutoModelForCausalLM.from_pretrained(
-#     "./qwen/Qwen2-1___5B-Instruct/", device_map="auto", torch_dtype=torch.bfloat16
-# )
-# model.enable_input_require_grads()  # 开启梯度检查点时，要执行该方法
-#
+model = AutoModelForCausalLM.from_pretrained(
+    token_path, device_map="auto", torch_dtype=torch.bfloat16
+)
+model.enable_input_require_grads()  # 开启梯度检查点时，要执行该方法
+
 # # 加载、处理数据集和测试集
 # train_dataset_path = data_path + "train.jsonl"
 # test_dataset_path = data_path + "test.jsonl"
