@@ -19,6 +19,7 @@ def dataset_jsonl_transfer(origin_path, new_path):
     # 读取旧的JSONL文件
     with open(origin_path, "r", encoding="utf-8") as file:
         for line in file:
+            print("line:", line)
             # 解析每一行的json数据
             data = json.loads(line)
             context = data["text"]
