@@ -80,6 +80,30 @@ def process_func(example):
     return {"input_ids": input_ids, "attention_mask": attention_mask, "labels": labels}
 
 
+# def predict(messages, model, tokenizer):
+#     """对测试集进行模型推理，得到预测结果"""
+#     device = "cuda"
+#     text = tokenizer.apply_chat_template(
+#         messages,
+#         tokenize=False,
+#         add_generation_prompt=True
+#     )
+#     model_inputs = tokenizer([text], return_tensors="pt").to(device)
+#
+#     generated_ids = model.generate(
+#         model_inputs.input_ids,
+#         max_new_tokens=512
+#     )
+#     generated_ids = [
+#         output_ids[len(input_ids):] for input_ids, output_ids in zip(model_inputs.input_ids, generated_ids)
+#     ]
+#
+#     response = tokenizer.batch_decode(generated_ids, skip_special_tokens=True)[0]
+#
+#     print(response)
+#
+#     return response
+
 def predict(messages, model, tokenizer):
     """对测试集进行模型推理，得到预测结果"""
     device = "cuda"
@@ -92,7 +116,8 @@ def predict(messages, model, tokenizer):
 
     generated_ids = model.generate(
         model_inputs.input_ids,
-        max_new_tokens=512
+        max_new_tokens=512,
+        use_cache=False  # 禁用缓存
     )
     generated_ids = [
         output_ids[len(input_ids):] for input_ids, output_ids in zip(model_inputs.input_ids, generated_ids)
