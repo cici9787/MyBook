@@ -15,11 +15,11 @@ def dataset_jsonl_transfer(origin_path, new_path):
     将原始数据集转换为大模型微调所需数据格式的新数据集
     """
     messages = []
-
+    print("origin_path:", origin_path)
     # 读取旧的JSONL文件
     with open(origin_path, "r", encoding="utf-8") as file:
         for line in file:
-            print("line:", line)
+            # print("line:", line)
             # 解析每一行的json数据
             data = json.loads(line)
             context = data["input"]
