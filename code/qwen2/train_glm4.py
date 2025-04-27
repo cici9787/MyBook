@@ -97,9 +97,9 @@ token_path = model_path + "ZhipuAI/glm-4-9b-chat/"
 model_dir = snapshot_download("ZhipuAI/glm-4-9b-chat", cache_dir=model_path, revision="master")
 
 # Transformers加载模型权重
-# tokenizer = AutoTokenizer.from_pretrained(token_path, use_fast=False, trust_remote_code=True)
-# model = AutoModelForCausalLM.from_pretrained(token_path, device_map="auto", torch_dtype=torch.bfloat16, trust_remote_code=True)
-# model.enable_input_require_grads()  # 开启梯度检查点时，要执行该方法
+tokenizer = AutoTokenizer.from_pretrained(token_path, use_fast=False, trust_remote_code=True)
+model = AutoModelForCausalLM.from_pretrained(token_path, device_map="auto", torch_dtype=torch.bfloat16, trust_remote_code=True)
+model.enable_input_require_grads()  # 开启梯度检查点时，要执行该方法
 
 # 加载、处理数据集和测试集
 
