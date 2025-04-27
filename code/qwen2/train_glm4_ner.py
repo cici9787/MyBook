@@ -17,18 +17,35 @@ def dataset_jsonl_transfer(origin_path, new_path):
     messages = []
 
     # 读取旧的JSONL文件
-    with open(origin_path, "r", encoding="utf-8") as file:
+    with open(origin_path, "r") as file:
         for line in file:
             # 解析每一行的json数据
             data = json.loads(line)
-            context = data["text"]
-            catagory = data["category"]
-            label = data["output"]
+            input_text = data["text"]
+            entities = data["entities"]
+            match_names = ["地点", "人名", "地理实体", "组织"]
+
+            entity_sentence = ""
+            for entity in entities:
+                entity_json = dict(entity)
+                entity_text = entity_json["entity_text"]
+                entity_names = entity_json["entity_names"]
+                for name in entity_names:
+                    if name in match_names:
+                        entity_label = name
+                        break
+
+                entity_sentence += f"""{{"entity_text": "{entity_text}", "entity_label": "{entity_label}"}}"""
+
+            if entity_sentence == "":
+                entity_sentence = "没有找到任何实体"
+
             message = {
-                "instruction": "你是一个文本分类领域的专家，你会接收到一段文本和几个潜在的分类选项，请输出文本内容的正确类型",
-                "input": f"文本:{context},类型选型:{catagory}",
-                "output": label,
+                "instruction": """你是一个文本实体识别领域的专家，你需要从给定的句子中提取 地点; 人名; 地理实体; 组织 实体. 以 json 格式输出, 如 {"entity_text": "南京", "entity_label": "地理实体"} 注意: 1. 输出的每一行都必须是正确的 json 字符串. 2. 找不到任何实体时, 输出"没有找到任何实体". """,
+                "input": f"文本:{input_text}",
+                "output": entity_sentence,
             }
+
             messages.append(message)
 
     # 保存重构后的JSONL文件
@@ -39,12 +56,15 @@ def dataset_jsonl_transfer(origin_path, new_path):
 
 def process_func(example):
     """
-    将数据集进行预处理
+    对数据集进行数据预处理，主要用于被dataset.map调用
     """
+
     MAX_LENGTH = 384
     input_ids, attention_mask, labels = [], [], []
+    system_prompt = """你是一个文本实体识别领域的专家，你需要从给定的句子中提取 地点; 人名; 地理实体; 组织 实体. 以 json 格式输出, 如 {"entity_text": "南京", "entity_label": "地理实体"} 注意: 1. 输出的每一行都必须是正确的 json 字符串. 2. 找不到任何实体时, 输出"没有找到任何实体"."""
+
     instruction = tokenizer(
-        f"<|system|>\n你是一个文本分类领域的专家，你会接收到一段文本和几个潜在的分类选项，请输出文本内容的正确类型<|endoftext|>\n<|user|>\n{example['input']}<|endoftext|>\n<|assistant|>\n",
+        f"<|system|>\n{system_prompt}<|endoftext|>\n<|user|>\n{example['input']}<|endoftext|>\n<|assistant|>\n",
         add_special_tokens=False,
     )
     response = tokenizer(f"{example['output']}", add_special_tokens=False)
@@ -61,6 +81,7 @@ def process_func(example):
 
 
 def predict(messages, model, tokenizer):
+    """对测试集进行模型推理，得到预测结果"""
     device = "cuda"
     text = tokenizer.apply_chat_template(
         messages,
@@ -83,41 +104,35 @@ def predict(messages, model, tokenizer):
 
     return response
 
-model_path = "E://model//"
-data_path = 'E:/code/MyBook/code/qwen2/zh_cls_fudan-news/'
-token_path = model_path + "ZhipuAI/glm-4-9b-chat/"
+model_id = "ZhipuAI/glm-4-9b-chat"
 
-# model_path = "/root/autodl-tmp/"
-# data_path = "./zh_cls_fudan-news/"
-# token_path = model_path + "ZhipuAI/glm-4-9b-chat/"
+# model_path = "E://model//" # local env
+model_path = "/root/autodl-tmp/"
+data_path = "./data/"
+train_dataset_path = data_path + "test_ccfbdci.jsonl"
+train_jsonl_new_path = data_path + "ccf_train.jsonl"
 
 
-# 在modelscope上下载GLM模型到本地目录下
-model_dir = snapshot_download("ZhipuAI/glm-4-9b-chat", cache_dir=model_path, revision="master")
+# 在modelscope上下载GLM4模型到本地目录下
+model_dir = snapshot_download(model_id, cache_dir=model_path, revision="master")
 
 # Transformers加载模型权重
-# tokenizer = AutoTokenizer.from_pretrained(token_path, use_fast=False, trust_remote_code=True)
-# model = AutoModelForCausalLM.from_pretrained(token_path, device_map="auto", torch_dtype=torch.bfloat16, trust_remote_code=True)
-# model.enable_input_require_grads()  # 开启梯度检查点时，要执行该方法
-
-# 加载、处理数据集和测试集
-
-train_dataset_path = data_path + "new_train.jsonl"
-test_dataset_path = data_path + "new_test.jsonl"
-
-train_jsonl_new_path = data_path + "test_new_train.jsonl"
-test_jsonl_new_path = data_path + "test_new_test.jsonl"
+tokenizer = AutoTokenizer.from_pretrained(model_dir, use_fast=False, trust_remote_code=True)
+model = AutoModelForCausalLM.from_pretrained(model_dir, device_map="auto", torch_dtype=torch.bfloat16, trust_remote_code=True)
+model.enable_input_require_grads()  # 开启梯度检查点时，要执行该方法
 
 if not os.path.exists(train_jsonl_new_path):
     dataset_jsonl_transfer(train_dataset_path, train_jsonl_new_path)
-if not os.path.exists(test_jsonl_new_path):
-    dataset_jsonl_transfer(test_dataset_path, test_jsonl_new_path)
 
 # 得到训练集
-train_df = pd.read_json(train_jsonl_new_path, lines=True)
+total_df = pd.read_json(train_jsonl_new_path, lines=True)
+train_df = total_df[int(len(total_df) * 0.1):]
 train_ds = Dataset.from_pandas(train_df)
 train_dataset = train_ds.map(process_func, remove_columns=train_ds.column_names)
 
+print("total:df:", total_df)
+
+# 配置LoRA
 config = LoraConfig(
     task_type=TaskType.CAUSAL_LM,
     target_modules=["query_key_value", "dense", "dense_h_to_4h", "activation_func", "dense_4h_to_h"],
@@ -127,11 +142,14 @@ config = LoraConfig(
     lora_dropout=0.1,  # Dropout 比例
 )
 
+# 得到被peft包装后的模型
 model = get_peft_model(model, config)
 
+# 配置Transformers训练参数
 args = TrainingArguments(
-    output_dir="./output/GLM4-9b",
+    output_dir="./output/GLM4-NER",
     per_device_train_batch_size=4,
+    per_device_eval_batch_size=4,
     gradient_accumulation_steps=4,
     logging_steps=10,
     num_train_epochs=2,
@@ -142,16 +160,19 @@ args = TrainingArguments(
     report_to="none",
 )
 
+# 设置SwanLab与Transformers的回调
 swanlab_callback = SwanLabCallback(
-    project="GLM4-fintune",
+    project="GLM4-NER-fintune",
     experiment_name="GLM4-9B-Chat",
-    description="使用智谱GLM4-9B-Chat模型在zh_cls_fudan-news数据集上微调。",
+    description="使用智谱GLM4-9B-Chat模型在NER数据集上微调，实现关键实体识别任务。",
     config={
-        "model": "ZhipuAI/glm-4-9b-chat",
-        "dataset": "huangjintao/zh_cls_fudan-news",
+        "model": model_id,
+        "model_dir": model_dir,
+        "dataset": "qgyd2021/chinese_ner_sft",
     },
 )
 
+# 设置Transformers Trainer
 trainer = Trainer(
     model=model,
     args=args,
@@ -160,10 +181,11 @@ trainer = Trainer(
     callbacks=[swanlab_callback],
 )
 
+# 开始训练
 trainer.train()
 
-# 用测试集的前10条，测试模型
-test_df = pd.read_json(test_jsonl_new_path, lines=True)[:10]
+# 用随机20条数据测试模型
+test_df = total_df[:int(len(total_df) * 0.1)].sample(n=20)
 
 test_text_list = []
 for index, row in test_df.iterrows():
@@ -180,5 +202,7 @@ for index, row in test_df.iterrows():
     result_text = f"{messages[0]}\n\n{messages[1]}\n\n{messages[2]}"
     test_text_list.append(swanlab.Text(result_text, caption=response))
 
+# 记录测试结果
 swanlab.log({"Prediction": test_text_list})
+# 关闭SwanLab记录
 swanlab.finish()
