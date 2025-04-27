@@ -22,7 +22,7 @@ def dataset_jsonl_transfer(origin_path, new_path):
             # print("line:", line)
             # 解析每一行的json数据
             data = json.loads(line)
-            context = data["input"]
+            context = data["text"]
             catagory = data["category"]
             label = data["output"]
             message = {
