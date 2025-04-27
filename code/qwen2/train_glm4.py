@@ -83,13 +83,13 @@ def predict(messages, model, tokenizer):
 
     return response
 
-model_path = "E://model//"
-data_path = 'E:/code/MyBook/code/qwen2/zh_cls_fudan-news/'
-token_path = model_path + "ZhipuAI/glm-4-9b-chat/"
-
-# model_path = "/root/autodl-tmp/"
-# data_path = "./zh_cls_fudan-news/"
+# model_path = "E://model//"
+# data_path = 'E:/code/MyBook/code/qwen2/zh_cls_fudan-news/'
 # token_path = model_path + "ZhipuAI/glm-4-9b-chat/"
+
+model_path = "/root/autodl-tmp/"
+data_path = "./zh_cls_fudan-news/"
+token_path = model_path + "ZhipuAI/glm-4-9b-chat/"
 
 
 # 在modelscope上下载GLM模型到本地目录下
