@@ -132,10 +132,10 @@ model = get_peft_model(model, config)
 
 args = TrainingArguments(
     output_dir="./output/GLM4-9b",
-    per_device_train_batch_size=4,
-    gradient_accumulation_steps=4,
+    per_device_train_batch_size=64,
+    gradient_accumulation_steps=64,
     logging_steps=10,
-    num_train_epochs=2,
+    num_train_epochs=1,
     save_steps=100,
     learning_rate=1e-4,
     save_on_each_node=True,
