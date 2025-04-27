@@ -81,30 +81,6 @@ def process_func(example):
     return {"input_ids": input_ids, "attention_mask": attention_mask, "labels": labels}
 
 
-# def predict(messages, model, tokenizer):
-#     """对测试集进行模型推理，得到预测结果"""
-#     device = "cuda"
-#     text = tokenizer.apply_chat_template(
-#         messages,
-#         tokenize=False,
-#         add_generation_prompt=True
-#     )
-#     model_inputs = tokenizer([text], return_tensors="pt").to(device)
-#
-#     generated_ids = model.generate(
-#         model_inputs.input_ids,
-#         max_new_tokens=512
-#     )
-#     generated_ids = [
-#         output_ids[len(input_ids):] for input_ids, output_ids in zip(model_inputs.input_ids, generated_ids)
-#     ]
-#
-#     response = tokenizer.batch_decode(generated_ids, skip_special_tokens=True)[0]
-#
-#     print(response)
-#
-#     return response
-
 def predict(messages, model, tokenizer):
     """对测试集进行模型推理，得到预测结果"""
     device = "cuda"
@@ -117,8 +93,7 @@ def predict(messages, model, tokenizer):
 
     generated_ids = model.generate(
         model_inputs.input_ids,
-        max_new_tokens=512,
-        use_cache=False  # 禁用缓存
+        max_new_tokens=512
     )
     generated_ids = [
         output_ids[len(input_ids):] for input_ids, output_ids in zip(model_inputs.input_ids, generated_ids)
@@ -129,6 +104,31 @@ def predict(messages, model, tokenizer):
     print(response)
 
     return response
+
+# def predict(messages, model, tokenizer):
+#     """对测试集进行模型推理，得到预测结果"""
+#     device = "cuda"
+#     text = tokenizer.apply_chat_template(
+#         messages,
+#         tokenize=False,
+#         add_generation_prompt=True
+#     )
+#     model_inputs = tokenizer([text], return_tensors="pt").to(device)
+#
+#     generated_ids = model.generate(
+#         model_inputs.input_ids,
+#         max_new_tokens=512,
+#         use_cache=False  # 禁用缓存
+#     )
+#     generated_ids = [
+#         output_ids[len(input_ids):] for input_ids, output_ids in zip(model_inputs.input_ids, generated_ids)
+#     ]
+#
+#     response = tokenizer.batch_decode(generated_ids, skip_special_tokens=True)[0]
+#
+#     print(response)
+#
+#     return response
 
 model_id = "ZhipuAI/glm-4-9b-chat"
 
@@ -146,13 +146,6 @@ model_dir = snapshot_download(model_id, cache_dir=model_path, revision="master")
 tokenizer = AutoTokenizer.from_pretrained(model_dir, use_fast=False, trust_remote_code=True)
 model = AutoModelForCausalLM.from_pretrained(model_dir, device_map="auto", torch_dtype=torch.bfloat16, trust_remote_code=True)
 model.enable_input_require_grads()  # 开启梯度检查点时，要执行该方法
-
-# model.__class__ = type(
-#     "PatchedGLM4",
-#     (model.__class__, GenerationMixin),  # 强制继承 GenerationMixin
-#     {}
-# )
-# model._extract_past_from_model_output = GenerationMixin._extract_past_from_model_output.__get__(model)
 
 if not os.path.exists(train_jsonl_new_path):
     dataset_jsonl_transfer(train_dataset_path, train_jsonl_new_path)
