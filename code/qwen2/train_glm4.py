@@ -18,7 +18,11 @@ def dataset_jsonl_transfer(origin_path, new_path):
     print("origin_path:", origin_path)
     # 读取旧的JSONL文件
     with open(origin_path, "r", encoding="utf-8") as file:
+        i = 0
         for line in file:
+            i += 1
+            if i > 100:
+                break
             # print("line:", line)
             # 解析每一行的json数据
             data = json.loads(line)
@@ -132,8 +136,8 @@ model = get_peft_model(model, config)
 
 args = TrainingArguments(
     output_dir="./output/GLM4-9b",
-    per_device_train_batch_size=64,
-    gradient_accumulation_steps=64,
+    per_device_train_batch_size=4,
+    gradient_accumulation_steps=4,
     logging_steps=10,
     num_train_epochs=1,
     save_steps=100,
