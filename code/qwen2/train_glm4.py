@@ -103,8 +103,8 @@ model_dir = snapshot_download("ZhipuAI/glm-4-9b-chat", cache_dir=model_path, rev
 
 # 加载、处理数据集和测试集
 
-train_dataset_path = data_path + "new_train.jsonl"
-test_dataset_path = data_path + "new_test.jsonl"
+train_dataset_path = data_path + "train.jsonl"
+test_dataset_path = data_path + "test.jsonl"
 
 train_jsonl_new_path = data_path + "test_new_train.jsonl"
 test_jsonl_new_path = data_path + "test_new_test.jsonl"
