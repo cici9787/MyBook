@@ -8,6 +8,8 @@ from peft import LoraConfig, TaskType, get_peft_model
 from transformers import AutoModelForCausalLM, TrainingArguments, Trainer, DataCollatorForSeq2Seq
 import os
 import swanlab
+from transformers.generation.utils import GenerationMixin
+
 
 def dataset_jsonl_transfer(origin_path, new_path):
     """
@@ -144,6 +146,13 @@ model_dir = snapshot_download(model_id, cache_dir=model_path, revision="master")
 tokenizer = AutoTokenizer.from_pretrained(model_dir, use_fast=False, trust_remote_code=True)
 model = AutoModelForCausalLM.from_pretrained(model_dir, device_map="auto", torch_dtype=torch.bfloat16, trust_remote_code=True)
 model.enable_input_require_grads()  # 开启梯度检查点时，要执行该方法
+
+model.__class__ = type(
+    "PatchedGLM4",
+    (model.__class__, GenerationMixin),  # 强制继承 GenerationMixin
+    {}
+)
+model._extract_past_from_model_output = GenerationMixin._extract_past_from_model_output.__get__(model)
 
 if not os.path.exists(train_jsonl_new_path):
     dataset_jsonl_transfer(train_dataset_path, train_jsonl_new_path)
