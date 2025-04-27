@@ -105,8 +105,8 @@ def predict(messages, model, tokenizer):
 model_id = "qwen/Qwen2-1.5B-Instruct"
 data_path = "./data/"
 
-# model_path = "/root/autodl-tmp/"
-model_path = "E://model//" # local env
+model_path = "/root/autodl-tmp/"
+# model_path = "E://model//" # local env
 
 model_dir = snapshot_download(model_id, cache_dir=model_path, revision="master")
 
