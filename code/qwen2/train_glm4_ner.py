@@ -9,8 +9,6 @@ from transformers import AutoModelForCausalLM, TrainingArguments, Trainer, DataC
 import os
 import swanlab
 
-from transformers import ChatGLMForConditionalGeneration
-
 def dataset_jsonl_transfer(origin_path, new_path):
     """
     将原始数据集转换为大模型微调所需数据格式的新数据集
