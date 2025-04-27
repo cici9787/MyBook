@@ -11,15 +11,6 @@ import swanlab
 
 from transformers import ChatGLMForConditionalGeneration
 
-# 定义一个函数来模拟 _extract_past_from_model_output 方法
-def mock_extract_past_from_model_output(self, outputs):
-    # 这里只是一个占位实现，你需要根据实际情况修改
-    return None, None
-
-# 给 ChatGLMForConditionalGeneration 类添加这个方法
-ChatGLMForConditionalGeneration._extract_past_from_model_output = mock_extract_past_from_model_output
-
-
 def dataset_jsonl_transfer(origin_path, new_path):
     """
     将原始数据集转换为大模型微调所需数据格式的新数据集
