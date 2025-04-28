@@ -2,25 +2,30 @@ import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from peft import PeftModel
 
+
 def predict(messages, model, tokenizer):
     device = "cuda"
-    text = tokenizer.apply_chat_template(messages, tokenize = False, add_generation_prompt = True)
-    model_inputs = tokenizer([text], return_tensors = "pt").to(device)
+    text = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+    model_inputs = tokenizer([text], return_tensors="pt").to(device)
 
-    generated_ids = model.generate(model_inputs.input_ids, max_new_tokens = 512)
+    generated_ids = model.generate(model_inputs.input_ids, max_new_tokens=512)
     generated_ids = [
         output_ids[len(input_ids):] for input_ids, output_ids in zip(model_inputs.input_ids, generated_ids)
     ]
-    response = tokenizer.batch_decode(generated_ids, skip_special_tokens=Ture)[0]
+
+    response = tokenizer.batch_decode(generated_ids, skip_special_tokens=True)[0]
     return response
 
 model_path = "/root/autodl-tmp/"
-model_path2 = model_path + "/ZhipuAI/glm-4-9b-chat/"
+token_path = model_path + "/qwen/Qwen2-1___5B-Instruct/"
 
-tokenizer = AutoTokenizer.from_pretrained(model_path2, use_fast = False, trust_remote_code = True)
-model = AutoModelForCausalLM.from_pretrained(model_path2, device_map = "auto", torch_dtype = torch.bfloat16)
+# 加载原下载路径的tokenizer
+tokenizer = AutoTokenizer.from_pretrained(token_path, use_fast=False, trust_remote_code=True)
+model = AutoModelForCausalLM.from_pretrained(token_path, device_map="auto",
+                                             torch_dtype=torch.bfloat16)
 
-# model = PeftModel.from_pretrained(model, model_id = "")
+# 加载训练好的Lora模型，将下面的checkpoint-[XXX]替换为实际的checkpoint文件名名称
+# model = PeftModel.from_pretrained(model, model_id="./output/Qwen2/checkpoint-1700")
 
 test_texts = {
     'instruction': "你是一个文本分类领域的专家，你会接收到一段文本和几个潜在的分类选项，请输出文本内容的正确类型",
@@ -36,6 +41,4 @@ messages = [
 ]
 
 response = predict(messages, model, tokenizer)
-print("response:", response)
-
-# has error
+print(response)
