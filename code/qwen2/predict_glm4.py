@@ -30,5 +30,10 @@ test_texts = {
 instruction = test_texts['instruction']
 input_value = test_texts['input']
 
+messages = [
+    {"role": "system", "content": f"{instruction}"},
+    {"role": "user", "content": f"{input_value}"}
+]
+
 response = predict(messages, model, tokenizer)
 print("response:", response)
