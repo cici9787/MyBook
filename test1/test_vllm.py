@@ -32,3 +32,27 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+'''
+vllm serve /root/autodl-tmp/models/deepseek-r1-distill-qwen-1.5b --port 8000
+
+curl http://localhost:8000/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "/root/autodl-tmp/models/deepseek-r1-distill-qwen-1.5b",
+    "messages": [
+      {"role": "system", "content": "You are a helpful assistant."},
+      {"role": "user", "content": "Who won the world series in 2020?"}
+    ]
+  }'
+  
+curl http://localhost:8000/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "/root/autodl-tmp/models/deepseek-r1-distill-qwen-1.5b",
+    "messages": [
+      {"role": "system", "content": "You are a helpful assistant."},
+      {"role": "user", "content": "你好，请问谁是天下最美的女人"}
+    ]
+  }'
+'''
